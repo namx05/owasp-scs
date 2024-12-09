@@ -47,7 +47,7 @@ These resources are designed to work together seamlessly, creating a unified eco
 ### **Contribute**
 We encourage contributions from the community to enhance and expand the SCS resources. If you're interested in contributing, please refer to our [contribution guide](https://scs.owasp.org/contributing).
 
-- **Project Leader:** [Shashank](https://www.linkedin.com/in/shashank-in/).
+- **Project Leader:** [**Shashank**](https://www.linkedin.com/in/shashank-in/).
 
 
 To get involved or contact the leadership, please visit the [OWASP Contact Page](https://scs.owasp.org/contact/).
