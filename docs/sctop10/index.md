@@ -7,7 +7,7 @@ search:
 
 # OWASP Smart Contract Top 10
 
-<img src="../assets/temp.jpeg" 
+<img src="../assets/sctop10.png" 
      align="right" 
      style="border-radius: 3px; margin-left: 5em; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;" 
      width="550px" 
