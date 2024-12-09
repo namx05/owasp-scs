@@ -1,4 +1,5 @@
 site_name: OWASP Smart Contract Security
+site_url: https://scs.owasp.org
 repo_url: https://github.com/OWASP/owasp-scs
 repo_name: OWASP/owasp-scs
 # use_directory_urls: false # only set for mkdocs build
