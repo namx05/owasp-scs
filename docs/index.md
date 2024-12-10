@@ -84,10 +84,10 @@ The OWASP SCSVS and SCSTG are trusted by the following platform providers and st
 
 
 <div style="display: flex; align-items: center;">
-    <img src="assets/images/other/credshields-logo-b.png#gh-light-mode-only" alt="CredShields Logo" style="margin-right: 20px; width: 350px;">
-    <img src="assets/images/other/credshields-logo-w.png#gh-dark-mode-only" alt="CredShields Logo" style="margin-right: 20px; width: 350px;">
-    <img src="assets/images/other/solidityscan-logo-b.png#gh-light-mode-only" alt="SolidityScan Logo" style="width: 350px;">
-    <img src="assets/images/other/solidityscan-logo-w.png#gh-dark-mode-only" alt="CredShields Logo" style="margin-right: 20px; width: 350px;">
+    <img src="assets/Images/Other/credshields-logo-b.png#gh-light-mode-only" alt="CredShields Logo" style="margin-right: 20px; width: 350px;">
+    <img src="assets/Images/Other/credshields-logo-w.png#gh-dark-mode-only" alt="CredShields Logo" style="margin-right: 20px; width: 350px;">
+    <img src="assets/Images/Other/solidityscan-logo-b.png#gh-light-mode-only" alt="SolidityScan Logo" style="width: 350px;">
+    <img src="assets/Images/Other/solidityscan-logo-w.png#gh-dark-mode-only" alt="CredShields Logo" style="margin-right: 20px; width: 350px;">
 </div>
 
 SCS Advocates are key industry adopters of the OWASP SCSVS and SCSTG who have invested a significant and consistent amount of resources to drive the project forward and ensure its continued success. This includes making consistent high-impact contributions and actively promoting the adoption and usage of the project. [Learn more](SCSTG/0x02c-Acknowledgements.md).
