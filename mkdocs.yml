@@ -166,7 +166,7 @@ nav:
 
 copyright: |
   <div style="float: left; padding-right: 1em;">
-    <a href="https://www.owasp.org"><img src="https://github.com/OWASP/owasp-scs/blob/master/docs/assets/OWASP_logo_white.png?raw=true" width="100px" /></a>
+    <a href="https://www.owasp.org"><img src="https://github.com/OWASP/owasp-scs/blob/main/docs/assets/OWASP_logo_white.png?raw=true" width="100px" /></a>
   </div>
   <span style="font-size: smaller">
     &#169; OWASP Foundation 2024. This work is licensed under 
