@@ -2,4 +2,4 @@
 
 
 
-## How to Use the Mobile Application Security Project
+## How to Use the Smart Contract Security Project

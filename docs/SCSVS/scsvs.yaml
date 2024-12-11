@@ -2,7 +2,7 @@
   "metadata": {
     "title": "Smart Contract Security Verification Standard (SCSVS)",
     "remarks": "The SCSVS is a comprehensive framework for securing smart contracts, with a focus on identifying vulnerabilities and mitigating risks in smart contract deployments.",
-    "version": "v1.0.0"
+    "version": "v0.0.1"
   },
   "groups": [
     {
@@ -19,18 +19,151 @@
               "rid": "S1.1.A1",
               "tid": "SCSTG-TEST-0005",
               "requirement": "Verify that the contract is divided into modular components or contracts.",
+              "testname": "Verify modularity and upgradability.",
               "checklist": [
-                "Check if the contract is divided into separate modules or contracts.",
-                "Check if the contract is destroyed with separation of concerns in mind."
+                "Are the smart contracts using import statements to include other contracts and libraries?",
+                "Are functions within the contract logically separated and grouped into different contracts or libraries?"
               ]
             },
             {
               "rid": "S1.1.A2",
               "tid": "SCSTG-TEST-0006",
               "requirement": "Ensure that upgrade mechanisms are designed to allow secure and controlled updates.",
+              "testname": "Ensure secure and controlled updates.",
               "checklist": [
-                "Check if the contract is divided into separate modules or contracts.",
-                "Check if the contract is deployed with separation of concerns in mind."
+                "Is the contract using a proxy pattern (e.g., Transparent Proxy or UUPS Proxy) for upgradability?",
+                "Are the upgradeTo or similar functions protected with onlyOwner or onlyAdmin modifiers?",
+                "Are there migration functions to safely transfer state variables to the new contract version?"
+              ]
+            },
+            {
+              "rid": "S1.1.A3",
+              "tid": "SCSTG-TEST-0006",
+              "requirement": "Check that module boundaries are clearly defined and that dependencies are managed.",
+              "testname": "Check module boundaries and dependencies.",
+              "checklist": [
+                "Are interfaces and abstract contracts used to define boundaries between modules?",
+                "Are external calls to other modules made through well-defined interfaces?"
+              ]
+            },
+            {
+              "rid": "S1.1.A4",
+              "tid": "SCSTG-TEST-0006",
+              "requirement": "Ensure that changes to storage variable order or types between contract versions are managed to avoid storage collisions and data corruption.",
+              "testname": "Ensure changes to storage variables are managed.",
+              "checklist": [
+                "Is there a well-documented storage layout for the contract?",
+                "Are storage variables added in storage gaps to avoid conflicts?"
+              ]
+            },
+            {
+              "rid": "S1.1.A5",
+              "tid": "SCSTG-TEST-0006",
+              "requirement": "Verify that critical privilege transfers are conducted in a two-step process to ensure secure and reliable privilege changes.",
+              "testname": "Verify critical privilege transfers.",
+              "checklist": [
+                "Is there a two-step process for transferring ownership using transferOwnership and claimOwnership?",
+                "Are there events emitted for each step of the transfer process?"
+              ]
+            },
+            {
+              "rid": "S1.1.A6",
+              "tid": "SCSTG-TEST-0006",
+              "requirement": "Verify that the data location of parameters and return variables is correctly handled when overriding internal and public functions to avoid generating invalid code during virtual function calls.",
+              "testname": "Verify data location handling in function overrides.",
+              "checklist": [
+                "Are memory and storage keywords correctly used for parameters and return variables in overridden functions?",
+                "Are there tests covering function overrides to ensure no invalid virtual function calls?"
+              ]
+            },
+             {
+              "rid": "S1.1.B1",
+              "requirement": "Verify that different functionalities are separated into distinct contracts or modules.",
+              "testname": "Verify separation of different functionalities.",
+              "checklist": [
+                "Are the contracts modular with clearly defined responsibilities?",
+                "Is there a single responsibility per contract or module?"
+              ]
+            },
+            {
+              "rid": "S1.1.B2",
+              "requirement": "Ensure that each module has a single responsibility and minimal dependencies on other modules.",
+              "testname": "Ensure minimal dependencies between modules.",
+              "checklist": [
+                "Are modules loosely coupled?",
+                "Is each module's responsibility clearly defined and limited?"
+              ]
+            },
+            {
+              "rid": "S1.1.B3",
+              "requirement": "Check for any cross-module dependencies that could lead to security risks.",
+              "testname": "Check for cross-module dependencies.",
+              "checklist": [
+                "Are there dependencies that could introduce security vulnerabilities?",
+                "Is each module's responsibility clearly defined and limited?"
+              ]
+            },
+            {
+              "rid": "S1.1.B4",
+              "requirement": "Ensure that the protocol maintains consistent and reliable operation during the transfer of privileges, with considerations for various edge cases.",
+              "testname": "Ensure consistent operation during privilege transfers.",
+              "checklist": [
+                "Are edge cases considered during privilege transfers?",
+                "Is there a fallback mechanism in case of transfer failure?"
+              ]
+            },
+            {
+              "rid": "S1.1.B5",
+              "requirement": "Verify that proxy contracts use the onlyInitializing modifier instead of initializer to ensure proper initialization.",
+              "testname": "Verify proxy contract initialization.",
+              "checklist": [
+                "Are proxy contracts using the onlyInitializing modifier?",
+                "Is there a check to prevent re-initialization?"
+              ]
+            },
+            {
+              "rid": "S1.1.B6",
+              "requirement": "Verify that storage layouts between contract versions are consistent to prevent data corruption and unpredictable behavior.",
+              "testname": "Verify storage layout consistency.",
+              "checklist": [
+                "Are storage layouts compatible across different contract versions?",
+                "Is there documentation for storage layout changes?"
+              ]
+            },
+            {
+              "rid": "S1.1.B7",
+              "requirement": "Ensure that immutable variables are consistent across implementations during proxy upgrades.",
+              "testname": "Ensure immutable variable consistency.",
+              "checklist": [
+                "Are immutable variables properly defined and documented?",
+                "Is there a verification process for consistency across upgrades?"
+              ]
+            },
+            {
+              "rid": "S1.1.B8",
+              "requirement": "Verify that implementations of the same logic across different parts of the contract are consistent to avoid introducing errors or vulnerabilities.",
+              "testname": "Verify consistency in logic implementation.",
+              "checklist": [
+                "Is logic implemented consistently across the contract?",
+                "Is there a review process for verifying consistency?"
+              ]
+            },
+            {
+              "rid": "S1.1.B9",
+              "requirement": "Ensure that ETH and WETH are handled separately with appropriate checks to avoid errors due to incorrect assumptions about exclusivity.",
+              "testname": "Ensure separate handling of ETH and WETH.",
+              "checklist": [
+                "Are ETH and WETH treated as distinct entities?",
+                "Are there checks in place to handle ETH and WETH appropriately?"
+              ]
+            },
+            {
+              "rid": "S1.1.B10",
+              "requirement": "Verify that contracts with constructors are not used in a proxy setup, and initializer logic is used instead.",
+              "testname": "Verify proxy setup for contracts with constructors.",
+              "checklist": [
+                "Are contracts designed without constructors for proxy setups?",
+                "Is initializer logic implemented and verified?"
               ]
             }
           ]
@@ -40,19 +173,129 @@
           "objective": "Ensure that smart contracts are designed with modularity and upgradability in mind.",
           "requirements": [
             {
-              "rid": "S1.1.B1",
-              "requirement": "Verify that the contract is divided into modular components or contracts.",
+              "rid": "S1.2.A1",
+              "requirement": "Verify that an upgrade mechanism (e.g., proxy pattern) is implemented for the contract.",
+              "testname": "Verify implementation of upgrade mechanisms.",
               "checklist": [
-                "Check if the contract is divided into separate modules or contracts.",
-                "Check if the contract is destruct with separation of concerns in mind."
+                "Is the contract using a well-known proxy pattern such as Transparent Proxy or UUPS Proxy?",
+                "Are there unit tests verifying the upgrade functionality?",
+                "Is the upgrade mechanism designed to be easily extensible for future upgrades?"
               ]
             },
             {
-              "rid": "S1.1.B2",
-              "requirement": "Ensure that upgrade mechanisms are designed to allow secure and controlled updates.",
+              "rid": "S1.2.A2",
+              "requirement": "Ensure that the upgrade process includes safeguards against unauthorized upgrades.",
+              "testname": "Ensure safeguards against unauthorized upgrades.",
               "checklist": [
-                "Check if the contract is divided into separate modules or contracts.",
-                "Check if the contract is demolish with separation of concerns in mind."
+                "Is the upgradeTo function protected by onlyOwner or onlyAdmin modifiers?",
+                "Are access controls and ownership mechanisms properly tested and reviewed?",
+                "Are multi-signature wallets or other advanced access control mechanisms used for upgrade authorization?"
+              ]
+            },
+            {
+              "rid": "S1.2.A3",
+              "requirement": "Check that the upgrade mechanism is documented and reviewed for security.",
+              "testname": "Review and document the upgrade mechanism.",
+              "checklist": [
+                "Is the upgrade mechanism thoroughly documented in the project documentation?",
+                "Has the upgrade mechanism undergone a formal security audit?",
+                "Are there guidelines and best practices documented for performing upgrades?"
+              ]
+            },
+            {
+              "rid": "S1.2.A4",
+              "requirement": "Verify that immutable variables are consistent across implementations during proxy upgrades to prevent misuse.",
+              "testname": "Verify consistency of immutable variables.",
+              "checklist": [
+                "Are immutable variables defined and documented across all contract versions?",
+                "Is there a validation process to ensure consistency of immutable variables during upgrades?",
+                "Are there automated tests checking the state of immutable variables before and after upgrades?"
+              ]
+            },
+            {
+              "rid": "S1.2.A5",
+              "requirement": "Verify that selfdestruct and delegatecall in implementation contracts do not introduce vulnerabilities or unexpected behaviors in a proxy setup.",
+              "testname": "Verify use of selfdestruct and delegatecall in proxy setup.",
+              "checklist": [
+                "Is there a review process for identifying and mitigating risks associated with selfdestruct and delegatecall?",
+                "Are there unit tests covering scenarios involving selfdestruct and delegatecall?",
+                "Is the use of selfdestruct and delegatecall documented and justified in the contract?"
+              ]
+            },
+            {
+              "rid": "S1.2.A6",
+              "requirement": "Verify that UUPSUpgradeable contracts are protected against vulnerabilities that may affect uninitialized implementation contracts, ensuring secure upgrade mechanisms.",
+              "testname": "Protect UUPSUpgradeable contracts.",
+              "checklist": [
+                "Are UUPSUpgradeable contracts tested for initialization-related vulnerabilities?",
+                "Is there a mechanism to ensure that implementation contracts are properly initialized before use?",
+                "Are there security reviews focused on initialization and upgrade vulnerabilities in UUPSUpgradeable contracts?"
+              ]
+            },
+            {
+              "rid": "S1.2.B1",
+              "requirement": "Verify that deprecated contract versions are correctly marked and handled.",
+              "testname": "Verify handling of deprecated contract versions.",
+              "checklist": [
+                "Are deprecated contract versions clearly marked with appropriate deprecation notices in the code and documentation?",
+                "Is there a mechanism to disable functionality in deprecated contracts while maintaining state integrity?",
+                "Are deprecated contracts archived and isolated from the main deployment pipeline to prevent accidental usage?"
+              ]
+            },
+            {
+              "rid": "S1.2.B2",
+              "requirement": "Ensure that access to deprecated versions is restricted or disabled.",
+              "testname": "Ensure restriction or disabling of access to deprecated versions.",
+              "checklist": [
+                "Are access controls updated to restrict interactions with deprecated contract versions?",
+                "Is there a revocation process in place to revoke permissions or keys associated with deprecated contracts?",
+                "Are deprecated contracts audited to ensure no critical functions remain accessible post-deprecation?"
+              ]
+            },
+            {
+              "rid": "S1.2.B3",
+              "requirement": "Check that migration paths from deprecated versions to new versions are secure.",
+              "testname": "Check security of migration paths from deprecated versions.",
+              "checklist": [
+                "Is there a documented and tested migration plan for transitioning from deprecated to new contract versions?",
+                "Are migration scripts and tools audited for security vulnerabilities that could compromise the migration process?",
+                "Is there a rollback mechanism in case the migration encounters issues, ensuring no loss of state or functionality?"
+              ]
+            }
+          ]
+        },
+        {
+          "cid": "SCSVS-ARCH-3",
+          "objective": "Ensure that smart contracts are designed with modularity and upgradability in mind.",
+          "requirements": [
+            {
+              "rid": "S1.3.C1",
+              "requirement": "Verify that mitigations are implemented for high-priority risks.",
+              "testname": "Verify implementation of high-priority risk mitigations.",
+              "checklist": [
+                "Are there specific mitigations in place for reentrancy attacks, such as the use of checks-effects-interactions pattern or reentrancy guards?",
+                "Are overflow and underflow checks implemented using SafeMath or Solidity's built-in overflow protection?",
+                "Are access controls and role-based permissions thoroughly tested to prevent unauthorized access?"
+              ]
+            },
+            { 
+              "rid": "S1.3.C2",
+              "requirement": "Ensure that mitigation strategies are documented and tested.",
+              "testname": "Ensure documentation and testing of mitigation strategies.",
+              "checklist": [
+                "Are all mitigation strategies documented with clear explanations of how they address specific vulnerabilities?",
+                "Are there unit and integration tests specifically designed to validate the effectiveness of each mitigation strategy?",
+                "Is there a process for continuously updating the documentation and tests as new threats and mitigations are identified?"
+              ]
+            },
+            {
+              "rid": "S1.3.C3",
+              "requirement": "Check that the effectiveness of implemented mitigations is reviewed and validated.",
+              "testname": "Review and validate effectiveness of implemented mitigations.",
+              "checklist": [
+                "Are periodic security audits conducted to review and validate the effectiveness of implemented mitigations?",
+                "Are there automated tools and scripts in place to continuously monitor the security posture of the smart contracts?",
+                "Is there a feedback loop for integrating audit findings and monitoring results into the mitigation strategy?"
               ]
             }
           ]

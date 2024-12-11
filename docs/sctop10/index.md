@@ -13,6 +13,7 @@ search:
      width="550px" 
      height="400px">
 
+<a href="https://github.com/OWASP/www-project-smart-contract-top-10">:material-github: GitHub Repo</a>
 
 The **OWASP Smart Contract Top 10** is a standard awareness document that aims to provide Web3 developers and security teams with insights into the top 10 vulnerabilities found in smart contracts.
 

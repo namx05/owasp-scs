@@ -23,16 +23,20 @@ To complement the SCSVS, the OWASP SCS project also provides the [OWASP Smart Co
 
 ## The SCSVS Control Groups
 
-The standard is divided into various groups of controls, labeled **SCSVS-XXXXX**, that represent the most critical areas of the mobile attack surface:
+The standard is divided into various groups of controls, labeled **SCSVS-XXXXX**, that represent the most critical areas of the smart contract attack surface:
 
-- **SCSVS-ARCH**: Secure storage of sensitive data on a device (data-at-rest).
-- **SCSVS-CODE**: Cryptographic functionality used to protect sensitive data.
-- **SCSVS-GOV**: Authentication and authorization mechanisms used by the mobile app.
-- **SCSVS-GOV**: Secure network communication between the mobile app and remote endpoints (data-in-transit).
-- **SCSVS-COMM**: Secure interaction with the underlying mobile platform and other installed apps.
-- **SCSVS-CODE**: Security best practices for data processing and keeping the app up-to-date.
-- **SCSVS-ORACLE**: Resilience to reverse engineering and tampering attempts.
-- **SCSVS-BLOCK**: Privacy controls to protect user privacy.
+- **SCSVS-ARCH**: Secure architecture, design principles, and threat modeling practices for blockchain systems.  
+- **SCSVS-CODE**: Policies and procedures for secure development, testing, and deployment of smart contracts.  
+- **SCSVS-GOV**: Security of business logic and economic mechanisms to prevent manipulation or exploitation.  
+- **SCSVS-AUTH**: Robust access control and authentication measures for blockchain-based applications.  
+- **SCSVS-COMM**: Secure communication and interaction between contracts, users, and external systems.  
+- **SCSVS-CRYPTO**: Best practices for cryptographic implementation in blockchain applications.  
+- **SCSVS-ORACLE**: Ensures arithmetic and logical operations are safe and resistant to attacks.  
+- **SCSVS-BLOCK**: Mitigation against denial of service (DoS) attacks and resource exhaustion risks.  
+- **SCSVS-BRIDGE**: Efficient data and state management practices to maintain blockchain integrity.  
+- **SCSVS-DEFI**: Optimization and monitoring of gas usage to avoid inefficiencies and constraints.  
+- **SCSVS-COMP**: Component-specific security guidelines tailored to blockchain applications.  
+
 
 !!! warning "SCS Testing Profiles"
 

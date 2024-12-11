@@ -76,6 +76,73 @@ nav:
     - SC09:2023 - Gas Limit Vulnerabilities: sctop10/SC09-GasLimit.md
     - SC10:2023 - Unchecked External Calls: sctop10/SC10-UncheckedCalls.md
 
+  - SCSTG:
+      - SCSTG/index.md
+      - Intro:
+        - ... | flat | SCSTG/0x0[1-2]*.md 
+        - ... | flat | SCSTG/0x09*.md
+      - General Concepts:
+        - ... | flat | SCSTG/0x04*.md
+      - Tests (Beta):
+        - SCSTG/tests/index.md
+        - Solidity:
+          - SCSVS-ARCH:  
+            - Overview: 
+              - ... | flat | SCSTG/tests/SCSVS-ARCH/overview/*.md
+            - Tests: 
+              - ... | flat | SCSTG/tests/SCSVS-ARCH/*.md
+          - SCSVS-CODE:
+            - Overview: 
+              - ... | flat | SCSTG/tests/SCSVS-CODE/overview/*.md
+            - Tests: 
+              - ... | flat | SCSTG/tests/SCSVS-CODE/*.md
+          - SCSVS-GOV:
+            - Overview: 
+              - ... | flat | SCSTG/tests/SCSVS-GOV/overview/*.md
+            - Tests: 
+              - ... | flat | SCSTG/tests/SCSVS-GOV/*.md
+          - SCSVS-AUTH:
+            - Overview: 
+              - ... | flat | SCSTG/tests/SCSVS-AUTH/overview/*.md
+            - Tests: 
+              - ... | flat | SCSTG/tests/SCSVS-AUTH/*.md
+          - SCSVS-COMM:
+            - Overview: 
+              - ... | flat | SCSTG/tests/SCSVS-COMM/overview/*.md
+            - Tests: 
+              - ... | flat | SCSTG/tests/SCSVS-COMM/*.md
+          - SCSVS-CRYPTO:
+            - Overview: 
+              - ... | flat | SCSTG/tests/SCSVS-CRYPTO/overview/*.md
+            - Tests: 
+              - ... | flat | SCSTG/tests/SCSVS-CRYPTO/*.md
+          - SCSVS-ORACLE:
+            - Overview: 
+              - ... | flat | SCSTG/tests/SCSVS-ORACLE/overview/*.md
+            - Tests: 
+              - ... | flat | SCSTG/tests/SCSVS-ORACLE/*.md
+          - SCSVS-BLOCK:
+            - Overview: 
+              - ... | flat | SCSTG/tests/SCSVS-BLOCK/overview/*.md
+            - Tests: 
+              - ... | flat | SCSTG/tests/SCSVS-BLOCK/*.md
+          - SCSVS-BRIDGE:
+            - Overview: 
+              - ... | flat | SCSTG/tests/SCSVS-BRIDGE/overview/*.md
+            - Tests: 
+              - ... | flat | SCSTG/tests/SCSVS-BRIDGE/*.md
+          - SCSVS-DEFI:
+            - Overview: 
+              - ... | flat | SCSTG/tests/SCSVS-DEFI/overview/*.md
+            - Tests: 
+              - ... | flat | SCSTG/tests/SCSVS-DEFI/*.md
+          - SCSVS-COMP:
+            - Overview: 
+              - ... | flat | SCSTG/tests/SCSVS-COMP/overview/*.md
+            - Tests: 
+              - ... | flat | SCSTG/tests/SCSVS-COMP/*.md
+
+
   - "SCWE (Beta)": 
     - SCWE/index.md
     - SCSVS-ARCH:
@@ -101,42 +168,6 @@ nav:
     - SCSVS-COMP:
       - ... | flat | SCWE/SCSVS-COMP/*.md
 
-  - SCSTG:
-      - SCSTG/index.md
-      - Intro:
-        - ... | flat | SCSTG/0x0[1-2]*.md 
-        - ... | flat | SCSTG/0x09*.md
-      - General Concepts:
-        - ... | flat | SCSTG/0x04*.md
-      - Tests (Beta):
-        - SCSTG/tests/index.md
-        - Solidity:
-          - SCSVS-ARCH:  
-            - ... | flat | SCSTG/tests/SCSVS-ARCH/*.md
-          - SCSVS-CODE:
-            - ... | flat | SCSTG/tests/SCSVS-CODE/*.md
-          - SCSVS-GOV:
-            - ... | flat | SCSTG/tests/SCSVS-GOV/*.md
-          - SCSVS-AUTH:
-            - Overview: 
-              - ... | flat | SCSTG/tests/SCSVS-AUTH/overview/*.md
-            - Tests: 
-              - ... | flat | SCSTG/tests/SCSVS-AUTH/*.md
-          - SCSVS-COMM:
-            - ... | flat | SCSTG/tests/SCSVS-COMM/*.md
-          - SCSVS-CRYPTO:
-            - ... | flat | SCSTG/tests/SCSVS-CRYPTO/*.md
-          - SCSVS-ORACLE:
-            - ... | flat | SCSTG/tests/SCSVS-ORACLE/*.md
-          - SCSVS-BLOCK:
-            - ... | flat | SCSTG/tests/SCSVS-BLOCK/*.md
-          - SCSVS-BRIDGE:
-            - ... | flat | SCSTG/tests/SCSVS-BRIDGE/*.md
-          - SCSVS-DEFI:
-            - ... | flat | SCSTG/tests/SCSVS-DEFI/*.md
-          - SCSVS-COMP:
-            - ... | flat | SCSTG/tests/SCSVS-COMP/*.md
-
 
   - "SCS Checklist":
      - checklists/index.md
@@ -151,6 +182,7 @@ nav:
      - SCSVS-BRIDGE: checklists/SCSVS-BRIDGE.md
      - SCSVS-DEFI: checklists/SCSVS-DEFI.md
      - SCSVS-COMP: checklists/SCSVS-COMP.md
+
 
 
   - News:
@@ -311,7 +343,6 @@ extra:
       link: https://twitter.com/owasp_scs
     - icon: fontawesome/brands/github
       link: https://github.com/OWASP/owasp-scs/discussions
-
   tags:
     android: android
     ios: ios

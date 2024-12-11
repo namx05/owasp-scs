@@ -3,17 +3,19 @@ hide: toc
 title: Smart Contract Security Weakness Enumeration (SCWE)
 ---
 
+<a href="https://github.com/OWASP/owasp-scstg/weaknesses">:material-github: GitHub Repo</a>
+
 ??? info "About the SCWE"
 
-    The Smart Contract Security Weakness Enumeration (SCWE) is a list of common security and privacy weaknesses in mobile applications. It is intended to be used as a reference for developers, security researchers, and security professionals. It acts as the bridge between the [SCSVS](https://scs.owasp.org/SCSVS) and the [SCSTG](https://sas.owasp.org/SCSTG).
+    The Smart Contract Security Weakness Enumeration (SCWE) is a list of common security and privacy weaknesses in smart contracts. It is intended to be used as a reference for developers, security researchers, and security professionals. It acts as the bridge between the [SCSVS](https://scs.owasp.org/SCSVS) and the [SCSTG](https://sas.owasp.org/SCSTG).
 
     <center>
     <img src="../assets/scwe-overview.png" style="width: 50%; border-radius: 5px; margin: 2em" />
     </center>
 
-    For its definition we draw inspiration from the [Common Weakness Enumeration (CWE)](https://cwe.mitre.org/), which is a community-developed list of common software security weaknesses. The SCWE is intended to be a **complementary list to the CWE**, focusing specifically on security weaknesses in mobile applications.
+    For its definition we draw inspiration from the [Common Weakness Enumeration (CWE)](https://cwe.mitre.org/), which is a community-developed list of common software security weaknesses. The SCWE is intended to be a **complementary list to the CWE**, focusing specifically on security weaknesses in smart contracts.
 
-    A **weakness** is a security or privacy issue that can be introduced into a mobile application. Weaknesses are categorized by the MASVS categories and controls. For example, a weakness related to the use of insecure random number generators is categorized under the `MASVS-CODE-1` control.
+    A **weakness** is a security or privacy issue that can be introduced into a smart contracts. Weaknesses are categorized by the MASVS categories and controls. For example, a weakness related to the use of insecure random number generators is categorized under the `SCSVS-CODE-1` control.
 
     Each weakness contains the following information:
 

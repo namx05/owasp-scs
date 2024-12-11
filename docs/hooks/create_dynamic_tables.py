@@ -115,7 +115,7 @@ def add_control_row(checklist, control):
             grouped_by_rid[rid] = {
                 'questions': [],
                 'control_id': control['cid'],
-                'requirement': req['requirement'],
+                'testname': req['testname'],
                 'test_id': req.get('tid', 'No Test ID'),
                 'path': f"./SCSVS/controls/{os.path.basename(control['cid'])}"
             }
@@ -143,7 +143,7 @@ def add_control_row(checklist, control):
         print(f"Added TEST ID for VR ID {rid}: {checklist_row['TEST ID']}")  # Debugging
         
         # Add the specific 'requirement' (control statement) for each rid
-        checklist_row['Control / SCSTG Test'] = group['requirement']
+        checklist_row['Control / SCSTG Test'] = group['testname']
         print(f"Added Control / SCSTG Test for VR ID {rid}: {checklist_row['Control / SCSTG Test']}")  # Debugging
         
         # Combine all checklist questions for this VR ID into a single string with bullet points
@@ -444,7 +444,7 @@ def on_page_markdown(markdown, page, **kwargs):
     elif path.endswith("SCWE/index.md"):
         # weaknesses/index.md
 
-        column_titles = {'id': 'SCWE ID', 'title': 'Title',   'scsvs_cg_id': "SCSVS CG ID",  'scsvs_scg_id': "SCSVS SCG IDs", 'L1': 'L1', 'L2': 'L2', 'R': 'R', 'P': 'P', 'status': 'Status'}
+        column_titles = {'id': 'SCWE ID', 'title': 'Title',   'scsvs_cg_id': "SCSVS CG ID",  'scsvs_scg_id': "SCSVS SCG IDs", 'L1': 'L1', 'L2': 'L2', 'status': 'Status'}
 
         weaknesses = get_all_weaknesses()
         weaknesses_columns_reordered = [reorder_dict_keys(weakness, column_titles.keys()) for weakness in weaknesses]

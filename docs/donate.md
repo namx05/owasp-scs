@@ -26,7 +26,7 @@ While both the SCSVS and the SCSTG are created and maintained by the community o
 
 **Effort Based:** You can instead support the project by contributing with your work and end up at our [acknowledgement section](SCSTG/0x02c-Acknowledgements.md "SCSTG acknowledgements").
 
-If you're a company, consider becoming a ["SCS Advocate"](SCSTG/0x02c-Acknowledgements.md#our-mas-advocates) which is the highest status that companies can achieve in the project acknowledging that they've gone above and beyond to support the project.
+If you're a company, consider becoming a ["SCS Advocate"](SCSTG/0x02c-Acknowledgements.md#our-scs-advocates) which is the highest status that companies can achieve in the project acknowledging that they've gone above and beyond to support the project.
 
 <center>
 <a href="../contributing/" class="md-button md-button--primary" style="margin: 5px;">:material-text-box-edit: Contribute</a>

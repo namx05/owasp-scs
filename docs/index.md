@@ -83,12 +83,34 @@ The OWASP SCSVS and SCSTG are trusted by the following platform providers and st
 ## 🥇 SCS Advocates
 
 
-<div style="display: flex; align-items: center;">
-    <img src="assets/Images/Other/credshields-logo-b.png#gh-light-mode-only" alt="CredShields Logo" style="margin-right: 20px; width: 350px;">
-    <img src="assets/Images/Other/credshields-logo-w.png#gh-dark-mode-only" alt="CredShields Logo" style="margin-right: 20px; width: 350px;">
-    <img src="assets/Images/Other/solidityscan-logo-b.png#gh-light-mode-only" alt="SolidityScan Logo" style="width: 350px;">
-    <img src="assets/Images/Other/solidityscan-logo-w.png#gh-dark-mode-only" alt="CredShields Logo" style="margin-right: 20px; width: 350px;">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 20px;">
+    <a href="https://credshields.com" target="_blank" style="text-decoration: none;">
+        <img 
+            src="assets/Images/Other/credshields-logo-b.png#gh-light-mode-only" 
+            alt="CredShields Logo" 
+            style="width: 100%; max-width: 350px;"
+        >
+        <img 
+            src="assets/Images/Other/credshields-logo-w.png#gh-dark-mode-only" 
+            alt="CredShields Logo" 
+            style="width: 100%; max-width: 350px;"
+        >
+    </a>
+    <a href="https://solidityscan.com" target="_blank" style="text-decoration: none;">
+        <img 
+            src="assets/Images/Other/solidityscan-logo-b.png#gh-light-mode-only" 
+            alt="SolidityScan Logo" 
+            style="width: 100%; max-width: 350px;"
+        >
+        <img 
+            src="assets/Images/Other/solidityscan-logo-w.png#gh-dark-mode-only" 
+            alt="SolidityScan Logo" 
+            style="width: 100%; max-width: 350px;"
+        >
+    </a>
 </div>
+
+
 
 SCS Advocates are key industry adopters of the OWASP SCSVS and SCSTG who have invested a significant and consistent amount of resources to drive the project forward and ensure its continued success. This includes making consistent high-impact contributions and actively promoting the adoption and usage of the project. [Learn more](SCSTG/0x02c-Acknowledgements.md).
 
