@@ -9,6 +9,8 @@ hide:
 
 <a href="https://github.com/OWASP/owasp-scstg/">:material-github: GitHub Repo</a>
 
+<a href="https://owasp.org/owasp-scstg">:material-web: OWASP Project Page</a>
+
 The **OWASP Smart Contract Security Testing Guide (SCSTG)** is a comprehensive manual designed to assist developers, auditors, and security professionals in evaluating the security of smart contracts. It provides detailed methodologies for identifying, verifying, and addressing vulnerabilities in smart contracts across various risk categories. The guide includes examples of common security flaws, methods for detecting these issues, and strategies for mitigating or eliminating the risks. 
 
 It describes technical processes for verifying the controls listed in the [OWASP SCSVS](https://scs.owasp.org/SCSVS) through the weaknesses defined by the [OWASP SCWE](https://scs.owasp.org/SCWE).

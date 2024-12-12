@@ -204,7 +204,8 @@ copyright: |
     &#169; OWASP Foundation 2024. This work is licensed under 
     <a href="https://creativecommons.org/licenses/by/4.0">CC-BY-4.0</a>. For any reuse or distribution, you must make clear to others the license terms of this work.
   </span><br><span style="font-size: smaller">OWASP &#174; is a registered trademark of the OWASP Foundation, Inc.</span> <span>This website uses cookies to analyze our traffic and only share that information with our analytics partners. <a href="https://github.com/OWASP/owasp-scs/blob/master/about_cookies.md">Learn more</a>.</span>
-  <div style="color: #6a6868; font-size: smaller"><span>Made with</span> <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a>  | <i>Website and covers designed by Pratik Lagaskar.</i></div>
+  <div style="color: #6a6868; font-size: smaller"><span>Made with</span> <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a>  | <i>Website Created by <a href="https://www.linkedin.com/in/pratik-lagaskar/" target="_blank">Pratik Lagaskar</a>.</i> | <i>Covers Designed by <a href="https://www.linkedin.com/in/siddharth-neekher-340519117" target="_blank">Siddharth Neekher</a>.</i></div>
+
 
 theme:
   name: material
@@ -248,17 +249,31 @@ theme:
     # - navigation.sections
     - content.code.copy
     - content.action.edit
+    - announce.dismiss
+
 
   palette:
-    # - primary: #499FFF 
-    - scheme: default
+
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
       toggle:
-        icon: material/weather-night 
+        icon: material/brightness-4
+        name: Switch to system preference
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      toggle:
+        icon: material/weather-night
         name: Switch to dark mode
-    - scheme: slate
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
+
 
 extra_css:
   - stylesheets/extra.css

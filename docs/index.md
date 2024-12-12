@@ -11,7 +11,7 @@ hide:
 <div class="scs-flex-container">
 
 <div>
-<blockquote>"Define the industry standard for Smart Contract security."</blockquote>
+<blockquote>"Define the industry standard for Smart Contract Security."</blockquote>
 
 <p style="padding-right: 4em;">The OWASP Smart Contracts Security (SCS) is a comprehensive project aimed at enhancing the security of smart contracts. It provides a structured framework for developers, auditors, and security professionals to follow best practices, detect vulnerabilities, and implement robust security measures in smart contracts, decentralized applications (dApps) and EVM-based blockchain systems.</p>
 </div>

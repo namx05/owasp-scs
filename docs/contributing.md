@@ -52,7 +52,7 @@ The latest version of the SCSVS v1 including all translations is available here:
 
 | Project Lead | Lead Author | Contributors and Reviewers |
 | ------- | --- | ----------------- |
-| Shashank | Pratik Lagaskar | Nehal Pillai|
+| [Shashank](https://github.com/Shashank-In) | [Pratik Lagaskar](https://github.com/warlordsam07),  [Nehal Pillai](https://github.com/nehalr777) | |
 
 <br/>
 
@@ -74,5 +74,5 @@ The latest version of the SCSTG v0.0.1 is available here: <https://github.com/OW
 
 | Authors | Reviewers | Top Contributors | Contributors | Mini Contributors | Editors |
 | ---- | ---- | ----- | --- | --- | --- |
-|Shashank | | Pratik Lagaskar|Nehal Pillai  | | |
+|[Shashank](https://github.com/Shashank-In) | | [Pratik Lagaskar](https://github.com/warlordsam07)| [Nehal Pillai](https://github.com/nehalr777)  | | |
 

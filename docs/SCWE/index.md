@@ -5,6 +5,8 @@ title: Smart Contract Security Weakness Enumeration (SCWE)
 
 <a href="https://github.com/OWASP/owasp-scstg/weaknesses">:material-github: GitHub Repo</a>
 
+<a href="https://owasp.org/owasp-scstg">:material-web: OWASP Project Page</a>
+
 ??? info "About the SCWE"
 
     The Smart Contract Security Weakness Enumeration (SCWE) is a list of common security and privacy weaknesses in smart contracts. It is intended to be used as a reference for developers, security researchers, and security professionals. It acts as the bridge between the [SCSVS](https://scs.owasp.org/SCSVS) and the [SCSTG](https://sas.owasp.org/SCSTG).

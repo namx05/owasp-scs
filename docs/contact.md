@@ -28,7 +28,13 @@ If you'd like to contribute, take a look at our [Contributions page](contributin
 
 ## Shashank
 [@cyberboyIndia](https://x.com/cyberboyIndia)
-<img src="../assets/shashank.jpg" width="200px" style="border-radius: 50%; margin-left: 4em;" align="right">
+<a href="https://credshields.com/#about_sec">
+    <img src="../assets/shashank.jpg" 
+         width="200px" 
+         style="border-radius: 50%; margin-left: 4em; cursor: pointer;" 
+         align="right" 
+         title="Shashank-Credshields">
+</a>
 
 Shashank brings over a decade of expertise in uncovering vulnerabilities, reporting them to reputable institutions, conducting pentests, and overseeing responsible disclosure and bug bounty initiatives. His contributions have earned him a place in the Security Hall of Fame for Apple (CVE-2017-7063, CVE-2017-7062, CVE-2017-2458), Twitter, Google, Facebook, Dropbox, and more than 40 other organizations, showcasing his knack for identifying significant security concerns.
 Apart from Bug Bounties, Shashank has worked as a security analyst for HackerOne and performed 200+ pentests with Cobalt. He was also a security engineer for Web3 Company Avalanche before starting his venture [CredShields](https://credshields.com) where he is building an AI-powered cloud-based Smart Contract Security Scanner called [SolidityScan.com](https://solidityscan.com)
@@ -55,7 +61,7 @@ Apart from Bug Bounties, Shashank has worked as a security analyst for HackerOne
          title="Pratik's Placeholder Image">
 </a>
 
-Pratik is a Security Researcher, focused on postmortems of web3 rekts, TX analysis & OSINT, tokenomics, and research into web3 security. Previously, Pratik has worked in traditional security with expertise in Red Teaming, code reviews (with proficiency in linters, fuzzers, CodeQL, Semgrep and CxQL), DevSecOps, hypervisor and browser security. He also holds various web2 security certifications. Pratik is very active in all types of CTFs, a major contributor to GSoC and OWASP; and has also won multiple hackathons. He has in-depth working experience with Go, Rust and good understanding of Solidity and Move. Currently, he is dabbling with web3sec and expanding his knowledge in EVM internals, various DeFi protocols, altchains (Cosmos, Solana), node reviews, hash-based snargs and Formal Verification (CVL, Coq and Dafny). When he is not working, Pratik spends majority of his free time strengthening audit skills by participating in contests and bug bounties. 
+Pratik is a Security Researcher at [CredShields](https://credshields.com), focused on postmortems of web3 rekts, TX analysis & OSINT, tokenomics, and research into web3 security. Previously, Pratik has worked in traditional security with expertise in Red Teaming, code reviews (with proficiency in linters, fuzzers, CodeQL, Semgrep, CxQL), DevSecOps, hypervisor and browser security. He also holds various web2 security certifications. Pratik is very active in all types of CTFs, a major contributor to GSoC and OWASP; and has also won multiple hackathons. He has in-depth working experience with Go, Rust and good understanding of Solidity and Move. Currently, he is dabbling with web3sec and expanding his knowledge in EVM internals, various DeFi protocols, altchains (Cosmos, Solana), node reviews, hash-based snargs and Formal Verification (CVL, Coq and Dafny). When he is not working, Pratik spends majority of his free time strengthening audit skills by participating in contests and bug bounties. 
 
 [:material-github:](https://github.com/WarlordSam07/)
 [:material-twitter:](https://x.com/warlordsam077)
@@ -68,6 +74,7 @@ Pratik is a Security Researcher, focused on postmortems of web3 rekts, TX analys
 <br>
 
 ---
+
 
 ## Nehal Pillai
 [@nehal_10_0](https://x.com/nehal_10_0)
