@@ -67,7 +67,7 @@ hide:
 
 <br>
 
-<button class="scs-button" onclick="window.location.href='https://github.com/OWASP/owasp-scstg/releases/latest/download/OWASP_SCS_Checklist.xlsx';"> Download the Checklist</button>
+<button class="scs-button" onclick="window.location.href='https://docs.google.com/spreadsheets/d/1Lx4v_dz9he42W0Tyj4gd_2vRhdud1N1rAg3UYv3pT3s/edit?gid=2037255517#gid=2037255517';"> Download the Checklist</button>
 
 </center>
 
