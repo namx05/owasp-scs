@@ -56,7 +56,7 @@ hide:
 
 <br>
 
-<button class="scs-button" onclick="window.location.href='https://github.com/OWASP/owasp-scstg/releases/latest/download/OWASP_SCSTG.pdf';"> Download the SCSTG</button>
+<button class="scs-button" onclick="window.location.href='https://github.com/OWASP/owasp-scstg/releases/download/v0.0.1/OWASP_Smart_Contract_Security_Testing_Guide_v0.0.1.pdf';"> Download the SCSTG</button>
 </center>
 
 <center>
