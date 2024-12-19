@@ -1,6 +1,6 @@
 # Frontispiece
 
-<img src="../../../assets/Images/owasp_scs_header.png" width="100%" />
+<img src="../../../assets/Images/Other/owasp_scs_header.png" width="100%" />
 
 ## About the OWASP SCSTG
 
