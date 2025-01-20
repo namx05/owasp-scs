@@ -66,16 +66,16 @@ nav:
   - "Smart Contract Top 10":
     - sctop10/index.md
     - sctop10/Top10:2023.md
-    - SC01:2025 - Improper Access Control: sctop10/SC01-access-control.md
-    - SC02:2023 - Integer Overflow and Underflow: sctop10/SC02-IntegerOverflowUnderflow.md
-    - SC03:2023 - Timestamp Dependence: sctop10/SC03-TimestampDependence.md
-    - SC04:2023 - Access Control Vulnerabilities: sctop10/SC04-AccessControl.md
-    - SC05:2023 - Front-running Attacks: sctop10/SC05-FrontRunning.md
-    - SC06:2023 - Denial of Service (DoS) Attacks: sctop10/SC06-DOS.md
-    - SC07:2023 - Logic Errors: sctop10/SC07-LogicErrors.md
-    - SC08:2023 - Insecure Randomness: sctop10/SC08-InsecureRandomness.md
-    - SC09:2023 - Gas Limit Vulnerabilities: sctop10/SC09-GasLimit.md
-    - SC10:2023 - Unchecked External Calls: sctop10/SC10-UncheckedCalls.md
+    - SC01:2025 - Access Control Vulnerabilities: sctop10/SC01-AccessControlVulnerabilities.md
+    - SC02:2025 - Integer Overflow and Underflow: sctop10/SC02-PriceOracleManipulation.md
+    - SC03:2025 - Timestamp Dependence: sctop10/SC03-TimestampDependence.md
+    - SC04:2025 - Access Control Vulnerabilities: sctop10/SC04-AccessControl.md
+    - SC05:2025 - Front-running Attacks: sctop10/SC05-FrontRunning.md
+    - SC06:2025 - Denial of Service (DoS) Attacks: sctop10/SC06-DOS.md
+    - SC07:2025 - Logic Errors: sctop10/SC07-LogicErrors.md
+    - SC08:2025 - Insecure Randomness: sctop10/SC08-InsecureRandomness.md
+    - SC09:2025 - Gas Limit Vulnerabilities: sctop10/SC09-GasLimit.md
+    - SC10:2025 - Unchecked External Calls: sctop10/SC10-UncheckedCalls.md
 
   - SCSTG:
       - SCSTG/index.md

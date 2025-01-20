@@ -1,4 +1,11 @@
-## SC01:2025 - Improper Access Control 
+---
+id: SC01
+title: Access Control Vulnerabilities
+hide:
+  - toc
+---
+
+## Vulnerability: Improper Access Control 
 
 ### Description:
 An access control vulnerability is a security flaw that allows unauthorized users to access or modify the contract's data or functions. These vulnerabilities arise when the contract's code fails to adequately restrict access based on user permission levels. Access control in smart contracts can relate to governance and critical logic, such as minting tokens, voting on proposals, withdrawing funds, pausing and upgrading the contracts, and changing ownership.
