@@ -32,7 +32,7 @@ hide:
 
 <br>
 
-<button class="scs-button" onclick="window.location.href='https://github.com/OWASP/owasp-scsvs/releases/download/v0.0.1/OWASP_Smart_Contract_Security_Verification_Standard-0.0.1_en.pdf';"> Download the SCSVS</button>
+<button class="scs-button" onclick="window.location.href='https://github.com/OWASP/www-project-smart-contract-security-verification-standard/releases/download/v0.0.1/OWASP_Smart_Contract_Security_Verification_Standard-0.0.1_en.pdf';"> Download the SCSVS</button>
 
 </center>
 
@@ -56,7 +56,7 @@ hide:
 
 <br>
 
-<button class="scs-button" onclick="window.location.href='https://github.com/OWASP/owasp-scstg/releases/download/v0.0.1/OWASP_Smart_Contract_Security_Testing_Guide_v0.0.1.pdf';"> Download the SCSTG</button>
+<button class="scs-button" onclick="window.location.href='https://github.com/OWASP/www-project-smart-contract-security-testing-guide/releases/download/v0.0.1/OWASP_Smart_Contract_Security_Testing_Guide_v0.0.1.pdf';"> Download the SCSTG</button>
 </center>
 
 <center>

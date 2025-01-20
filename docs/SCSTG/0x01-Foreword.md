@@ -8,7 +8,7 @@ Smart contracts are at the heart of decentralized ecosystems, but their complexi
 
 If you have feedback, suggestions, or would like to contribute, feel free to create an issue on GitHub or join the discussion on OWASP’s Slack. See the README for details:  
 
-[https://www.github.com/OWASP/owasp-scstg/](https://www.github.com/OWASP/owasp-scstg/)  
+[https://www.github.com/OWASP/www-project-smart-contract-security-testing-guide/](https://www.github.com/OWASP/www-project-smart-contract-security-testing-guide/)  
 
 **smart contract (noun): A self-executing contract with the terms of the agreement directly written into lines of code, enabling secure, automated transactions on a blockchain.**  
 

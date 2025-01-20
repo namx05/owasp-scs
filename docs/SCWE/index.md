@@ -3,9 +3,9 @@ hide: toc
 title: Smart Contract Security Weakness Enumeration (SCWE)
 ---
 
-<a href="https://github.com/OWASP/owasp-scstg/weaknesses">:material-github: GitHub Repo</a>
+<a href="https://github.com/OWASP/www-project-smart-contract-security-testing-guide/weaknesses">:material-github: GitHub Repo</a>
 
-<a href="https://owasp.org/owasp-scstg">:material-web: OWASP Project Page</a>
+<a href="https://owasp.org/www-project-smart-contract-security-testing-guide">:material-web: OWASP Project Page</a>
 
 ??? info "About the SCWE"
 

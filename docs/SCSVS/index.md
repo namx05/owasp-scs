@@ -9,9 +9,9 @@ search:
 
 <img src="../assets/scsvs_cover.png" align="right" style="border-radius: 3px; margin: 3em; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;" width="350px" >
 
-<a href="https://github.com/OWASP/owasp-scsvs/">:material-github: GitHub Repo</a>
+<a href="https://github.com/OWASP/www-project-smart-contract-security-verification-standard/">:material-github: GitHub Repo</a>
 
-<a href="https://owasp.org/owasp-scsvs">:material-web: OWASP Project Page</a>
+<a href="https://owasp.org/www-project-smart-contract-security-verification-standard">:material-web: OWASP Project Page</a>
 
 The **Smart Contract Security Verification Standard (SCSVS)** is a list of specific security requirements or tests for smart contracts, primarily written in Solidity and deployed on EVM-based blockchains. These requirements are intended to be used by architects, developers, testers, security professionals, tool vendors, and consumers to define, build, test, and verify secure smart contracts, decentralized applications (dApps) and blockchain protocols. The standard promotes best practices for ensuring the security and integrity of smart contracts and decentralized finance (DeFi) systems.
 
@@ -19,7 +19,7 @@ To complement the SCSVS, the OWASP SCS project also provides the [OWASP Smart Co
 
 <br>
 
-<button class="scs-button" onclick="window.location.href='https://github.com/OWASP/owasp-scsvs/releases/download/v0.0.1/OWASP_Smart_Contract_Security_Verification_Standard-0.0.1_en.pdf';"> Download the SCSVS</button>
+<button class="scs-button" onclick="window.location.href='https://github.com/OWASP/www-project-smart-contract-security-verification-standard/releases/download/v0.0.1/OWASP_Smart_Contract_Security_Verification_Standard-0.0.1_en.pdf';"> Download the SCSVS</button>
 
 <br>
 

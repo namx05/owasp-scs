@@ -24,8 +24,8 @@ def get_edit_url(src_path, edit_url_SCSTG, edit_url_SCSVS):
 
 def on_pre_page(page, config, files):
     try:
-        edit_url_SCSTG = "https://github.com/OWASP/owasp-scstg/edit/master/"
-        edit_url_SCSVS = "https://github.com/OWASP/owasp-scsvs/edit/master/"
+        edit_url_SCSTG = "https://github.com/OWASP/www-project-smart-contract-security-testing-guide/edit/master/"
+        edit_url_SCSVS = "https://github.com/OWASP/www-project-smart-contract-security-verification-standard/edit/master/"
     except KeyError:
         return page
     
