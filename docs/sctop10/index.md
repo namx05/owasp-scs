@@ -39,7 +39,7 @@ It serves as a reference to ensure that smart contracts are secured against the 
 
 ### Top 10
 
-* SC01:2025 - [Access Control Vulnerabilities](2025/en/src/SC01-access-control.md)
+* SC01:2025 - [Access Control Vulnerabilities](SC01-access-control.md)
 * SC02:2025 - [Price Oracle Manipulation](2025/en/src/SC02-price-oracle-manipulation.md)
 * SC03:2025 - [Logic Errors](2025/en/src/SC03-logic-errors.md)
 * SC04:2025 - [Lack of Input Validation](2025/en/src/SC04-lack-of-input-validation.md)

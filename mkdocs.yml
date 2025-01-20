@@ -65,7 +65,8 @@ nav:
 
   - "Smart Contract Top 10":
     - sctop10/index.md
-    - SC01:2023 - Reentrancy Attacks: sctop10/SC01-Reentrancy.md
+    - sctop10/Top10:2023.md
+    - SC01:2025 - Improper Access Control: sctop10/SC01-access-control.md
     - SC02:2023 - Integer Overflow and Underflow: sctop10/SC02-IntegerOverflowUnderflow.md
     - SC03:2023 - Timestamp Dependence: sctop10/SC03-TimestampDependence.md
     - SC04:2023 - Access Control Vulnerabilities: sctop10/SC04-AccessControl.md
