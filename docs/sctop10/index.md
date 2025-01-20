@@ -41,14 +41,14 @@ It serves as a reference to ensure that smart contracts are secured against the 
 
 * SC01:2025 - [Access Control Vulnerabilities](SC01-AccessControlVulnerabilities.md)
 * SC02:2025 - [Price Oracle Manipulation](SC02-PriceOracleManipulation.md)
-* SC03:2025 - [Logic Errors](2025/en/src/SC03-logic-errors.md)
-* SC04:2025 - [Lack of Input Validation](2025/en/src/SC04-lack-of-input-validation.md)
-* SC05:2025 - [Reentrancy Attacks](2025/en/src/SC05-reentrancy-attacks.md)
-* SC06:2025 - [Unchecked External Calls](2025/en/src/SC06-unchecked-external-calls.md)
-* SC07:2025 - [Flash Loan Attacks](2025/en/src/SC07-flash-loan-attacks.md)
-* SC08:2025 - [Integer Overflow and Underflow](2025/en/src/SC08-integer-overflow-underflow.md)
-* SC09:2025 - [Insecure Randomness](2025/en/src/SC09-insecure-randomness.md)
-* SC10:2025 - [Denial of Service (DoS) Attacks](2025/en/src/SC10-denial-of-service.md)
+* SC03:2025 - [Logic Errors](SC03-LogicErrors.md)
+* SC04:2025 - [Lack of Input Validation](SC04-LackOfInputValidation.md)
+* SC05:2025 - [Reentrancy Attacks](SC05-Reentrancy.md)
+* SC06:2025 - [Unchecked External Calls](SC06-UncheckedExternalCalls.md)
+* SC07:2025 - [Flash Loan Attacks](SC07-FlashLoanAttacks.md)
+* SC08:2025 - [Integer Overflow and Underflow](SC08-IntegerOverUnderFlow.md)
+* SC09:2025 - [Insecure Randomness](SC09-InsecureRandomness.md)
+* SC10:2025 - [Denial of Service (DoS) Attacks](SC10-DenailOfService.md)
 
 ### Overview
 

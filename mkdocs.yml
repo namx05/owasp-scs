@@ -67,15 +67,15 @@ nav:
     - sctop10/index.md
     - sctop10/Top10:2023.md
     - SC01:2025 - Access Control Vulnerabilities: sctop10/SC01-AccessControlVulnerabilities.md
-    - SC02:2025 - Integer Overflow and Underflow: sctop10/SC02-PriceOracleManipulation.md
-    - SC03:2025 - Timestamp Dependence: sctop10/SC03-TimestampDependence.md
-    - SC04:2025 - Access Control Vulnerabilities: sctop10/SC04-AccessControl.md
-    - SC05:2025 - Front-running Attacks: sctop10/SC05-FrontRunning.md
-    - SC06:2025 - Denial of Service (DoS) Attacks: sctop10/SC06-DOS.md
-    - SC07:2025 - Logic Errors: sctop10/SC07-LogicErrors.md
-    - SC08:2025 - Insecure Randomness: sctop10/SC08-InsecureRandomness.md
-    - SC09:2025 - Gas Limit Vulnerabilities: sctop10/SC09-GasLimit.md
-    - SC10:2025 - Unchecked External Calls: sctop10/SC10-UncheckedCalls.md
+    - SC02:2025 - Price Oracle Manipulation: sctop10/SC02-PriceOracleManipulation.md
+    - SC03:2025 - Logic Errors: sctop10/SC03-LogicErrors.md
+    - SC04:2025 - Lack of Input Validation: sctop10/SC04-LackOfInputValidation.md
+    - SC05:2025 - Reentrancy Attacks: sctop10/SC05-Reentrancy.md
+    - SC06:2025 - Unchecked External Calls: sctop10/SC06-UncheckedExternalCalls.md
+    - SC07:2025 - Flash Loan Attacks: sctop10/SC07-FlashLoanAttacks.md
+    - SC08:2025 - Integer Overflow and Underflow: sctop10/SC08-IntegerOverUnderFlow.md
+    - SC09:2025 - Insecure Randomness: sctop10/SC09-InsecureRandomness.md
+    - SC10:2025 - Denial of Service (DoS) Attacks: sctop10/SC10-DenailOfService.md
 
   - SCSTG:
       - SCSTG/index.md

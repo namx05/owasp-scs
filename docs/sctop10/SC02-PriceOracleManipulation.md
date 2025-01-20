@@ -1,6 +1,6 @@
 ---
 id: SC02
-title: Price Oracle Manipulation
+title: SC02:2025 Price Oracle Manipulation
 hide:
   - toc
 ---

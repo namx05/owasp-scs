@@ -1,6 +1,6 @@
 ---
 id: SC01
-title: Access Control Vulnerabilities
+title: SC01:2025 Access Control Vulnerabilities
 hide:
   - toc
 ---

@@ -1,6 +1,6 @@
 ---
-id: SC08
-title: Insecure Randomness
+id: SC09
+title: SC09:2025 Insecure Randomness
 hide:
   - toc
 ---
@@ -19,12 +19,12 @@ Random number generators are essential for applications like gambling, game-winn
     
 These methods are insecure because miners can manipulate them, affecting the contract’s logic.
 
-### Example :
+### Example (Vulnerable contract):
 ```
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-contract InsecureRandomNumber {
+contract Solidity_InsecureRandomness {
     constructor() payable {}
 
     function guess(uint256 _guess) public {
@@ -50,6 +50,45 @@ contract InsecureRandomNumber {
 - Chainlink VRF — It is a provably fair and verifiable random number generator (RNG) that enables smart contracts to access random values without compromising security or usability.
 - The Signidice Algorithm — Suitable for PRNG in applications involving two parties using cryptographic signatures.
 - Bitcoin Block Hashes — Oracles like BTCRelay can be used which act as a bridge between Ethereum and Bitcoin. Contracts on Ethereum can request future block hashes from the Bitcoin Blockchain as a source of entropy. It should be noted that this approach is not safe against the miner incentive problem and should be implemented with caution.
+
+### Example (Fixed version):
+
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import "@chainlink/contracts/src/v0.8/VRFConsumerBase.sol";
+
+contract Solidity_InsecureRandomness is VRFConsumerBase {
+    bytes32 internal keyHash;
+    uint256 internal fee;
+    uint256 public randomResult;
+
+    constructor(address _vrfCoordinator, address _linkToken, bytes32 _keyHash, uint256 _fee) 
+        VRFConsumerBase(_vrfCoordinator, _linkToken) 
+    {
+        keyHash = _keyHash;
+        fee = _fee;
+    }
+
+    function requestRandomNumber() public returns (bytes32 requestId) {
+        require(LINK.balanceOf(address(this)) >= fee, "Not enough LINK");
+        return requestRandomness(keyHash, fee);
+    }
+
+    function fulfillRandomness(bytes32 requestId, uint256 randomness) internal override {
+        randomResult = randomness;
+    }
+
+    function guess(uint256 _guess) public {
+        require(randomResult > 0, "Random number not generated yet");
+        if (_guess == randomResult) {
+            (bool sent,) = msg.sender.call{value: 1 ether}("");
+            require(sent, "Failed to send Ether");
+        }
+    }
+}
+```
 
 ### Examples of Smart Contracts That Fell Victim to Insecure Randomness Attacks:
 1. [Roast Football Hack](https://bscscan.com/address/0x26f1457f067bf26881f311833391b52ca871a4b5#code) : A Comprehensive [Hack Analysis](https://blog.solidityscan.com/roast-football-hack-analysis-e9316170c443)
