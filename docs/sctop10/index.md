@@ -35,7 +35,7 @@ It serves as a reference to ensure that smart contracts are secured against the 
 ## Changes
 
 
-![OWASP 2023 to 2025 Changes](../assets/images/Mapping2023-2025.png)
+![OWASP 2023 to 2025 Changes](../assets/Mapping2023-2025.png)
 
 ### Top 10
 
@@ -87,7 +87,7 @@ Web3HackHub documents breaches from 2011 onward, enabling analysis of evolving a
     - Price Oracle Manipulation: $8.8M in losses. 
     - Unchecked External Calls: $550.7K in losses.
 
-[![web3hackhub](../assets/images/web3hackhub-snap.png)](https://solidityscan.com/web3hackhub)
+[![web3hackhub](../assets/web3hackhub-snap.png)](https://solidityscan.com/web3hackhub)
 
 ### Other Sources:
 
