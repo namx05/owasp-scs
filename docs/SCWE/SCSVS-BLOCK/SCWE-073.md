@@ -5,8 +5,8 @@ alias: message-call-with-harcoded-gas
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-BLOCK]
+  scsvs-scg: [SCSVS-BLOCK-1]
   cwe: [400]
 status: new
 ---

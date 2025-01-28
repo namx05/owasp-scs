@@ -5,8 +5,8 @@ alias: uninitialized-storage-pointer
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-ARCH]
+  scsvs-scg: [SCSVS-ARCH-1]
   cwe: [457]
 status: new
 ---

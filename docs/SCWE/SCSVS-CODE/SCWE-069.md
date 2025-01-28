@@ -5,8 +5,8 @@ alias: shadowing-state-variables
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-CODE]
+  scsvs-scg: [SCSVS-CODE-2]
   cwe: [1001]
 status: new
 ---

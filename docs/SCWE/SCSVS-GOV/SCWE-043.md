@@ -5,8 +5,8 @@ alias: insecure-use-of-fallback-functions
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-GOV]
+  scsvs-scg: [SCSVS-GOV-3]
   cwe: [250]
 status: new
 ---

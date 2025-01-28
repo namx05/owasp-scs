@@ -5,8 +5,8 @@ alias: lack-of-proper-gas-management
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-DEFI]
+  scsvs-scg: [SCSVS-DEFI-1]
   cwe: [400]
 status: new
 ---

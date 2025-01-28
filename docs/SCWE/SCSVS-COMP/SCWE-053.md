@@ -5,8 +5,8 @@ alias: weak-randomness-chain-attributes
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-COMP]
+  scsvs-scg: [SCSVS-COMP-1]
   cwe: [336]
 status: new
 ---

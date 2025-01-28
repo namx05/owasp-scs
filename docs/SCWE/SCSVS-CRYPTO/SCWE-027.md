@@ -5,8 +5,8 @@ alias: vulnerable-cryptographic-algorithms
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-CRYPTO]
+  scsvs-scg: [SCSVS-CRYPTO-2]
   cwe: [327]
 status: new
 ---

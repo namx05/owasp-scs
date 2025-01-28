@@ -5,8 +5,8 @@ alias: lack-of-circuit-breakers
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-GOV]
+  scsvs-scg: [SCSVS-GOV-2]
   cwe: [703]
 status: new
 ---

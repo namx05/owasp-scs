@@ -5,8 +5,8 @@ alias: integer-overflows-underflows
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-ORACLE]
+  scsvs-scg: [SCSVS-ORACLE-2]
   cwe: [190]
 status: new
 ---

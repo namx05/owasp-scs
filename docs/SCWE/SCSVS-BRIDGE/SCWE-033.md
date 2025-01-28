@@ -5,8 +5,8 @@ alias: chain-split-risks
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-BRIDGE]
+  scsvs-scg: [SCSVS-BRIDGE-1]
   cwe: [20]
 status: new
 ---

@@ -5,8 +5,8 @@ alias: block-values-as-proxy-for-time
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-BLOCK]
+  scsvs-scg: [SCSVS-BLOCK-2]
   cwe: [20]
 status: new
 ---

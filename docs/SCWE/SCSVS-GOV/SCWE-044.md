@@ -5,8 +5,8 @@ alias: insecure-use-of-storage
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-GOV]
+  scsvs-scg: [SCSVS-GOV-1]
   cwe: [20]
 status: new
 ---

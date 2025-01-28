@@ -5,8 +5,8 @@ alias: improper-ether-transfer-handling
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-GOV]
+  scsvs-scg: [SCSVS-GOV-3]
   cwe: [703]
 status: new
 ---

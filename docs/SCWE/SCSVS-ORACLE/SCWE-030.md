@@ -5,8 +5,8 @@ alias: insecure-oracle-data-updates
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-ORACLE]
+  scsvs-scg: [SCSVS-ORACLE-1]
   cwe: [20]
 status: new
 ---

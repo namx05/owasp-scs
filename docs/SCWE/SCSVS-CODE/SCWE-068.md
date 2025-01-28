@@ -5,8 +5,8 @@ alias: state-variable-default-visibility
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-CODE]
+  scsvs-scg: [SCSVS-CODE-1]
   cwe: [704]
 status: new
 ---

@@ -5,8 +5,8 @@ alias: insufficient-protection-against-front-running
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-GOV]
+  scsvs-scg: [SCSVS-GOV-3]
   cwe: [20]
 status: new
 ---

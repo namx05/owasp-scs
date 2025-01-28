@@ -5,8 +5,8 @@ alias: improper-cryptographic-key-management
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-CRYPTO]
+  scsvs-scg: [SCSVS-CRYPTO-1]
   cwe: [310]
 status: new
 ---

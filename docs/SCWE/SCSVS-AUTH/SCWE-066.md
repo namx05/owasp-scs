@@ -5,8 +5,8 @@ alias: authorization-through-tx-origin
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-AUTH]
+  scsvs-scg: [SCSVS-AUTH-1]
   cwe: [640]
 status: new
 ---

@@ -5,8 +5,8 @@ alias: dependency-on-block-gas-limit
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-BRIDGE]
+  scsvs-scg: [SCSVS-BRIDGE-2]
   cwe: [400]
 status: new
 ---

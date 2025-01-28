@@ -5,8 +5,8 @@ alias: lack-of-rate-limiting
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-DEFI]
+  scsvs-scg: [SCSVS-DEFI-2]
   cwe: [770]
 status: new
 ---

@@ -5,8 +5,8 @@ alias: message-replay-vulnerabilities
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-COMM]
+  scsvs-scg: [SCSVS-COMM-1]
   cwe: [294]
 status: new
 ---

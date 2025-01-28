@@ -5,8 +5,8 @@ alias: delegatecall-untrusted
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-COMM]
+  scsvs-scg: [SCSVS-COMM-3]
   cwe: [829]
 status: new
 ---

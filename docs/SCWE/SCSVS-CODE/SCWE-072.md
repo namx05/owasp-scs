@@ -5,8 +5,8 @@ alias: use-of-deprecated-solidity-functions
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-CODE]
+  scsvs-scg: [SCSVS-CODE-1]
   cwe: [676]
 status: new
 ---

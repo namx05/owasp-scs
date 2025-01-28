@@ -5,8 +5,8 @@ alias: incorrect-inheritance-order
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-ARCH]
+  scsvs-scg: [SCSVS-ARCH-2]
   cwe: [1001]
 status: new
 ---

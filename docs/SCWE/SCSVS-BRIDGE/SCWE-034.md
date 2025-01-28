@@ -5,8 +5,8 @@ alias: insecure-cross-chain-messaging
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-BRIDGE]
+  scsvs-scg: [SCSVS-BRIDGE-2]
   cwe: [20]
 status: new
 ---

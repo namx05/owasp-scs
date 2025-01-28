@@ -5,8 +5,8 @@ alias: insecure-delegatecall-usage
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-COMM]
+  scsvs-scg: [SCSVS-COMM-1]
   cwe: [250]
 status: new
 ---

@@ -5,8 +5,8 @@ alias: improper-handling-of-nonce
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-GOV]
+  scsvs-scg: [SCSVS-GOV-2]
   cwe: [20]
 status: new
 ---

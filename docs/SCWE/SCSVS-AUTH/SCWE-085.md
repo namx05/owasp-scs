@@ -5,8 +5,8 @@ alias: insecure-use-of-msg-sender
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-AUTH]
+  scsvs-scg: [SCSVS-AUTH-1]
   cwe: [352]
 status: new
 ---

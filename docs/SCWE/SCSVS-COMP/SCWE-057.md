@@ -5,8 +5,8 @@ alias: write-arbitrary-storage
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-COMP]
+  scsvs-scg: [SCSVS-COMP-2]
   cwe: [20]
 status: new
 ---

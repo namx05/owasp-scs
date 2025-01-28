@@ -5,8 +5,8 @@ alias: rtl-override-character
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-CODE]
+  scsvs-scg: [SCSVS-CODE-2]
   cwe: [451]
 status: new
 ---

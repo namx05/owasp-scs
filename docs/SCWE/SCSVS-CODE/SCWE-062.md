@@ -5,8 +5,8 @@ alias: code-with-no-effects
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-CODE]
+  scsvs-scg: [SCSVS-CODE-1]
   cwe: [561]
 status: new
 ---

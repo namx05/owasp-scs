@@ -5,8 +5,8 @@ alias: transaction-order-dependence
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-ARCH]
+  scsvs-scg: [SCSVS-ARCH-3]
   cwe: [400]
 status: new
 ---

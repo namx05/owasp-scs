@@ -5,8 +5,8 @@ alias: unexpected-ether-balance
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: []
-  scsvs-scg: []
+  scsvs-cg: [SCSVS-GOV]
+  scsvs-scg: [SCSVS-GOV-3]
   cwe: [665]
 status: new
 ---
