@@ -1,6 +1,6 @@
 ---
 title: Insecure Block Timestamp Usage
-id: SCWE-021
+id: SCWE-031
 alias: insecure-block-timestamp-usage
 platform: []
 profiles: [L1]
@@ -10,7 +10,6 @@ mappings:
   cwe: [682]
 status: new
 ---
-
 
 ## Relationships
 - **CWE-682: Incorrect Calculation**  
@@ -31,7 +30,7 @@ Potential issues that arise from insecure timestamp usage include:
 - **Avoid timestamp-based conditions**: Where possible, use block numbers instead of timestamps. Block numbers are more reliable and less subject to manipulation.
 - **Use Oracles**: For time-sensitive contracts, consider using trusted oracles to provide external time data.
 
-## Samples
+## Examples
 
 ### Insecure Block Timestamp Usage
 

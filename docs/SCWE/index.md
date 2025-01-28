@@ -17,7 +17,7 @@ title: Smart Contract Security Weakness Enumeration (SCWE)
 
     For its definition we draw inspiration from the [Common Weakness Enumeration (CWE)](https://cwe.mitre.org/), which is a community-developed list of common software security weaknesses. The SCWE is intended to be a **complementary list to the CWE**, focusing specifically on security weaknesses in smart contracts.
 
-    A **weakness** is a security or privacy issue that can be introduced into a smart contracts. Weaknesses are categorized by the MASVS categories and controls. For example, a weakness related to the use of insecure random number generators is categorized under the `SCSVS-CODE-1` control.
+    A **weakness** is a security or privacy issue that can be introduced into a smart contracts. Weaknesses are categorized by the SCSVS categories and controls. For example, a weakness related to the use of insecure random number generators is categorized under the `SCSVS-CODE-1` control.
 
     Each weakness contains the following information:
 

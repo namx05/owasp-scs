@@ -4,7 +4,7 @@
 
 
 [![OWASP Incubator](https://img.shields.io/badge/owasp-incubator-blue.svg)](https://owasp.org/owasp-scs/)
-[![Creative Commons License](https://img.shields.io/github/license/OWASP/owasp-mastg)](https://creativecommons.org/licenses/by-sa/4.0/ "CC BY-SA 4.0")
+[![Creative Commons License](https://img.shields.io/github/license/OWASP/owasp-scs)](https://creativecommons.org/licenses/by-sa/4.0/ "CC BY-SA 4.0")
 
 
 This is the official GitHub Repository of the OWASP Smart Contract Security (SCS) project. This comprehensive initiative provides security standards, guidance, and resources for smart contract development, auditing, and verification. The SCS ecosystem consists of interconnected sub-projects that complement one another to promote robust security practices and compliance in smart contracts, decentralized applications (dApps) and EVM-based blockchain systems.
