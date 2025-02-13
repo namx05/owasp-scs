@@ -17,7 +17,7 @@ It describes technical processes for verifying the controls listed in the [OWASP
 
 <br>
 
-<button class="scs-button" onclick="window.location.href='https://github.com/OWASP/www-project-smart-contract-security-testing-guide/releases/latest/download/OWASP_SCSTG.pdf';"> Download the SCSTG</button>
+<button class="scs-button" onclick="window.location.href='https://github.com/OWASP/www-project-smart-contract-security-testing-guide/releases/download/v0.0.1/OWASP_Smart_Contract_Security_Testing_Guide_v0.0.1.pdf';"> Download the SCSTG</button>
 
 <br>
 
