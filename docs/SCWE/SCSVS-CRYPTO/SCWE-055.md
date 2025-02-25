@@ -36,14 +36,26 @@ contract ReplayAttackExample {
 
 ### Fixed Contract Example
 ```solidity
-contract SecureReplayProtectionExample {
-    mapping(address => uint256) public nonces;
+  pragma solidity ^0.8.0;
 
-    function authenticate(bytes32 message, uint8 v, bytes32 r, bytes32 s) public {
-        uint256 nonce = nonces[msg.sender]++;
-        bytes32 messageWithNonce = keccak256(abi.encodePacked(message, nonce));  // Bind signature to specific context
-        address signer = ecrecover(messageWithNonce, v, r, s);
-        require(signer == msg.sender, "Invalid signature");
-    }
-}
+  import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+
+  contract SecureReplayProtectionExample {
+      using ECDSA for bytes32;
+
+      mapping(address => uint256) public nonces;
+
+      function authenticate(bytes32 message, bytes memory signature) public {
+          uint256 nonce = nonces[msg.sender]++;
+          bytes32 messageWithContext = keccak256(abi.encodePacked(message, nonce, block.chainid));  
+          address signer = messageWithContext.toEthSignedMessageHash().recover(signature);
+          require(signer == msg.sender, "Invalid signature");
+      }
+  }
 ```
+**Fixes Implemented:**
+-  Binds signature to a nonce (ensuring it's only usable once).
+-  Includes `chainId` (prevents cross-chain replay attacks).
+- Uses OpenZeppelin’s ECDSA library (avoids signature malleability risks).
+
+---
