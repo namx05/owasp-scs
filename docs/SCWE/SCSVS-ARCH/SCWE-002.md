@@ -31,7 +31,7 @@ The more complex the code, the higher the chance that mistakes are made, especia
 - **Avoid redundant logic**: Consolidate repeated logic into reusable functions or libraries.
 - **Ensure modularity**: Split the contract into manageable modules that focus on specific tasks, improving readability and maintainability.
 
-## Samples
+## Examples
 
 ### Excessive Complexity
 
