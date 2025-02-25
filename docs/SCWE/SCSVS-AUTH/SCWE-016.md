@@ -1,7 +1,7 @@
 ---
-title: Insufficient Authorization
+title: Insufficient Authorization Checks
 id: SCWE-016
-alias: insufficient-authorization
+alias: insufficient-authorization-checks
 platform: []
 profiles: [L1]
 mappings:
@@ -29,7 +29,7 @@ Common causes of insufficient authorization include:
 - **Principle of least privilege:** Ensure each user only has access to the minimal set of actions they need to perform their role.
 - **Thorough testing:** Test for authorization vulnerabilities to ensure all restricted functions are properly secured.
 
-## Samples
+## Examples
 
 ### Insufficient Authorization Example
 
@@ -70,6 +70,3 @@ contract FixedAuthorization {
 
 ```
 In the fixed example, the `onlyOwner` modifier ensures that only the contract owner can withdraw funds, thus preventing unauthorized users from performing sensitive operations like withdrawing assets.
-
-
-

@@ -1,65 +1,61 @@
 ---
-title: Deprecated Variable and Function Usage
+title: Insecure ABI Encoding and Decoding
 id: SCWE-011
-alias: deprecated-usage
+alias: insecure-abi-encoding-decoding
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: [SCSVS-CODE]
-  scsvs-scg: [SCSVS-CODE-2]
-  cwe: [477]
+  scsvs-cg: [SCSVS-ARCH]
+  scsvs-scg: [SCSVS-ARCH-3]
+  cwe: [937]
 status: new
 ---
 
 ## Relationships
-- CWE-477: Use of Obsolete Function
-  [https://cwe.mitre.org/data/definitions/477.html](https://cwe.mitre.org/data/definitions/477.html)
+- CWE-116: Improper Encoding or Escaping of Output 
+  [https://cwe.mitre.org/data/definitions/116.html](https://cwe.mitre.org/data/definitions/116.html)
 
 ## Description
-The use of deprecated variables and functions refers to employing code elements that are no longer recommended for use, either due to obsolescence, security concerns, or the introduction of better alternatives. Using such elements can cause issues, including reduced compatibility, poor maintainability, and security vulnerabilities. Specific concerns related to deprecated usage are:
+Insecure ABI encoding and decoding occur when a smart contract improperly handles data serialization and deserialization, leading to vulnerabilities such as data corruption, type confusion, or reentrancy attacks. Solidity provides ABI encoding functions like `abi.encode()`, `abi.encodePacked()`, and `abi.decode()`, but improper usage can cause unexpected behavior.
 
-- **Security risks**: Deprecated functions may have known vulnerabilities or might not be patched.
-- **Compatibility issues**: Newer compiler versions and environments may not support deprecated code.
-- **Maintenance difficulties**: Continuing to use deprecated code increases the complexity of codebase management and prevents clean upgrades.
+Common issues with insecure ABI handling:
+- **Collision Risks in `abi.encodePacked()`**: Multiple concatenated parameters can lead to ambiguous encoding, making it vulnerable to hash collisions.
+- **Unchecked Decoding**: Improper use of `abi.decode()` can result in unintended memory corruption or type confusion.
+- **Lack of Input Validation**: Encoding user inputs without verification can introduce security flaws.
+- **Mismatched Data Types**: Decoding an incorrectly encoded data structure can lead to invalid memory access.
 
 ## Remediation
-- **Replace deprecated functions**: Always use the recommended and supported alternatives in the latest compiler versions.
-- **Update dependencies**: If relying on libraries that use deprecated elements, upgrade to versions that support current standards.
-- **Monitor for deprecation warnings**: Stay informed about deprecated functions in the Solidity language or external libraries and refactor the code when necessary.
+- **Use `abi.encode()` Instead of `abi.encodePacked()` for Hashing**: Prevent collision risks by ensuring unique encoding.
+- **Validate Data Before Decoding**: Ensure the encoded data conforms to the expected structure before decoding.
+- **Match Encoding and Decoding Types**: Always use the correct type structure when decoding to avoid unintended behavior.
+- **Avoid Direct ABI Decoding of External Calls**: Use strict validation mechanisms when handling data from external contracts.
 
-## Samples
+## Examples
 
-### Contract with Deprecated Function Usage
-
-```solidity
-pragma solidity ^0.4.0;
-
-contract DeprecatedUsage {
-    address public owner;
-    uint public balance;
-
-    // Deprecated function, example using older Solidity versions
-    function sendTransaction(address recipient, uint amount) public {
-        recipient.transfer(amount);
-    }
-}
-```
-
-In this example, the `transfer` function in Solidity's older versions is deprecated. Continuing to use such functions can cause issues with future compiler versions.
-
-### Improved Contract without Deprecated Usage
+### Example of Insecure ABI Encoding:
 
 ```solidity
 pragma solidity ^0.8.0;
 
-contract UpdatedUsage {
-    address public owner;
-    uint public balance;
-
-    // Replaced with safer, modern methods
-    function sendTransaction(address recipient, uint amount) public {
-        payable(recipient).transfer(amount);
+contract InsecureABI {
+    function hashValues(string memory str, uint256 num) public pure returns (bytes32) {
+        return keccak256(abi.encodePacked(str, num)); // ❌ Collision risk
     }
 }
 ```
-In this improved example, the contract uses the latest version of Solidity (0.8.0), which has better support and security features. The `transfer` method is also updated to be more compatible with the latest Solidity practices.
+
+- In this example, `abi.encodePacked()` creates a collision risk because different input combinations can produce the same hash.
+
+### Refactored to Secure ABI Encoding:
+
+```solidity
+pragma solidity ^0.8.0;
+
+contract SecureABI {
+    function hashValues(string memory str, uint256 num) public pure returns (bytes32) {
+        return keccak256(abi.encode(str, num)); // ✅ Unique encoding, no collision
+    }
+}
+```
+
+- In this improved version, `abi.encode()` ensures a unique encoding structure, preventing hash collision attacks.

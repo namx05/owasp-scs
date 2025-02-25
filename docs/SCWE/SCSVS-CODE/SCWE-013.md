@@ -1,95 +1,92 @@
 ---
-title: Dead Code
+title: Unauthorized Parameter Changes
 id: SCWE-013
-alias: dead-code
+alias: unauthorized-parameter-changes
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: [SCSVS-CODE]
-  scsvs-scg: [SCSVS-CODE-2]
-  cwe: [561]
+  scsvs-cg: [SCSVS-GOV]
+  scsvs-scg: [SCSVS-GOV-2]
+  cwe: [494]
 status: new
 ---
 
 ## Relationships
-- **CWE-561: Dead Code**  
-  [CWE-561](https://cwe.mitre.org/data/definitions/561.html)  
-  Description: Dead code refers to sections of code that are written but never executed or used. It does not contribute to the program's logic and can increase contract complexity, introduce bugs, and waste computational resources.
+- CWE-233: Improper Handling of Parameters 
+  [https://cwe.mitre.org/data/definitions/233.html](https://cwe.mitre.org/data/definitions/233.html)
 
 ## Description
-Dead code refers to any part of a smart contract that is written but never executed during the contract's lifecycle. This can happen for several reasons, including leftover code from previous implementations or logic that is no longer needed. Dead code unnecessarily increases contract size, making it harder to audit, maintain, and increases the gas cost for contract deployment and execution.
+Unauthorized parameter changes occur when privileged smart contract parameters—such as fees, governance rules, withdrawal limits, or security configurations—can be modified by a single entity or an unauthorized user. This can lead to **unexpected behavior, security risks, or financial loss** if an attacker gains access to the privileged account.
 
-### Key issues:
-- **Increased contract size**: Larger contracts lead to higher deployment costs.
-- **Reduced clarity and maintainability**: Unnecessary code can confuse developers and lead to mistakes in future code changes.
-- **Higher attack surface**: Although dead code doesn't run, it could still be misused by attackers in case the contract's logic is altered.
+Key risks associated with unauthorized parameter changes:
+- **Single Point of Control**: A centralized owner can unilaterally alter critical parameters, leading to governance concerns.
+- **Malicious Modifications**: Attackers who exploit an access control flaw may change key parameters, resulting in stolen funds or manipulated contract logic.
+- **Lack of Transparency**: Hidden or undocumented parameter changes can mislead users and investors, reducing trust.
+- **Impact on DeFi Protocols**: Unauthorized changes to liquidity pool fees, interest rates, or reward mechanisms can disrupt incentives and harm protocol users.
 
 ## Remediation
-- **Remove unused code**: Periodically clean up the codebase to ensure only necessary functions and variables remain.
-- **Refactor contract logic**: Keep the contract logic simple and modular. If a piece of code is no longer needed, remove it completely.
-- **Regular audits and code reviews**: Set up regular code reviews to identify and eliminate dead code as part of the contract development lifecycle.
+- **Use Role-Based Access Control (RBAC)**: Assign granular roles and restrict who can modify key parameters.
+- **Multisig Approval for Parameter Changes**: Require governance approval (e.g., Gnosis Safe) before making critical updates.
+- **Timelocks for Parameter Changes**: Introduce time delays on modifications to allow community review and prevent instant malicious changes.
+- **On-Chain Governance for DAOs**: Utilize decentralized governance mechanisms where stakeholders vote on parameter updates.
+- **Emit Events for Transparency**: Log all parameter changes on-chain to ensure visibility and auditability.
 
-## Samples
+## Examples
 
-### Example of Dead Code
+### Example of a Contract With Unauthorized Parameter Changes (Centralized Control)
 
 ```solidity
-pragma solidity ^0.4.0;
+pragma solidity ^0.8.0;
 
-contract DeadCodeExample {
-    uint public balance;
+contract RiskyContract {
+    address public owner;
+    uint256 public feeRate;
 
-    // This function allows users to deposit funds
-    function deposit(uint amount) public {
-        balance += amount;
+    constructor() {
+        owner = msg.sender;
+        feeRate = 5; // Default fee rate
     }
 
-    // This function is never used and adds unnecessary complexity to the contract
-    function unusedWithdrawal() public {
-        // Logic that is never called
-        balance -= 10;
-    }
-}
-
-contract Test {
-    DeadCodeExample example;
-
-    constructor() public {
-        example = new DeadCodeExample();
-    }
-
-    // Calling the deposit function from the DeadCodeExample contract
-    function testDeposit() public {
-        example.deposit(100);  // Calling the deposit function on the example contract
+    function updateFeeRate(uint256 newRate) public {
+        require(msg.sender == owner, "Only owner can update fee rate");
+        feeRate = newRate; // ❌ Single entity can modify a critical parameter at any time
     }
 }
 ```
-In this example, the function `unusedWithdrawal()` in the `DeadCodeExample` contract is never called or used in the code. It adds unnecessary complexity, increases contract size, and wastes computational resources.
 
-### Optimized Contract Without Dead Code
+- In this example, the owner can unilaterally change the fee rate, which poses a security risk.
+
+### Refactored to Require Multisig and Timelocks
+
 ```solidity
-pragma solidity ^0.4.0;
+pragma solidity ^0.8.0;
 
-contract DeadCodeExample {
-    uint public balance;
-
-    // This function allows users to deposit funds
-    function deposit(uint amount) public {
-        balance += amount;
-    }
+interface ITimelock {
+    function queueTransaction(address target, uint256 value, bytes calldata data, uint256 eta) external;
+    function executeTransaction(address target, uint256 value, bytes calldata data, uint256 eta) external;
 }
 
-contract Test {
-    DeadCodeExample example;
+contract SecureGovernance {
+    ITimelock public timelock;
+    uint256 public feeRate;
 
-    constructor() public {
-        example = new DeadCodeExample();
+    constructor(address _timelock) {
+        timelock = ITimelock(_timelock);
+        feeRate = 5; // Default fee rate
     }
 
-    // Calling the deposit function from the DeadCodeExample contract
-    function testDeposit() public {
-        example.deposit(100);  // Calling the deposit function on the example contract
+    function updateFeeRate(uint256 newRate) public {
+        bytes memory data = abi.encodeWithSignature("setFeeRate(uint256)", newRate);
+        timelock.queueTransaction(address(this), 0, data, block.timestamp + 2 days); // ✅ Adds delay before execution
+    }
+
+    function setFeeRate(uint256 newRate) public {
+        require(msg.sender == address(timelock), "Only timelock can execute");
+        feeRate = newRate;
     }
 }
 ```
-In the optimized version, the `unusedWithdrawal()` function has been removed from the `DeadCodeExample` contract, reducing the size and complexity of the code and making it easier to maintain and audit.
+
+This improved version:
+- Uses a Timelock contract to delay parameter changes, preventing instant unauthorized updates.
+- Restricts execution to an approved governance mechanism, preventing a single actor from making direct changes.

@@ -22,7 +22,7 @@ Integer overflows and underflows occur when arithmetic operations exceed the bou
 - **Use Solidity 0.8.0 or later:** Leverage the compiler’s built-in overflow and underflow checks.  
 - **Apply SafeMath libraries:** Use libraries like OpenZeppelin’s `SafeMath` for versions before 0.8.0.  
 
-## Samples
+## Examples
 
 ### Vulnerable Contract Example
 

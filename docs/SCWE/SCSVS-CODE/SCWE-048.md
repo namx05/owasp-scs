@@ -22,7 +22,7 @@ Unchecked call return value vulnerabilities occur when a contract fails to valid
 - **Check return values:** Always verify the success of low-level calls.  
 - **Use higher-level abstractions:** Prefer `transfer` or `send` over `call` for sending Ether, as they revert on failure. 
 
-## Samples
+## Examples
 
 ### Vulnerable Contract Example
 

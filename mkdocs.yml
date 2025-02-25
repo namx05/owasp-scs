@@ -144,7 +144,7 @@ nav:
               - ... | flat | SCSTG/tests/SCSVS-COMP/*.md
 
 
-  - "SCWE (Beta)": 
+  - "SCWE": 
     - SCWE/index.md
     - SCSVS-ARCH:
       - ... | flat | SCWE/SCSVS-ARCH/*.md

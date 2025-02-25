@@ -26,7 +26,7 @@ Reentrancy attacks occur when a contract allows untrusted external calls during 
 - **Update state first:** Modify critical state variables before any external calls.  
 - **Implement reentrancy guards:** Use tools like `nonReentrant` modifiers to block recursive calls. 
 
-## Samples
+## Examples
 
 ### Vulnerable Contract Example (Reentrancy)
 

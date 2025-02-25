@@ -1,59 +1,89 @@
 ---
-title: Improper Function Definitions
+title: Lack of Multisig Governance
 id: SCWE-012
-alias: improper-function-definition
+alias: lack-of-multisig-governance
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: [SCSVS-CODE]
-  scsvs-scg: [SCSVS-CODE-1]
-  cwe: [710]
+  scsvs-cg: [SCSVS-GOV]
+  scsvs-scg: [SCSVS-GOV-1]
+  cwe: [285]
 status: new
 ---
 
 ## Relationships
-- CWE-710: Improper Adherence to Coding Standards
-  [https://cwe.mitre.org/data/definitions/710.html](https://cwe.mitre.org/data/definitions/710.html)
+- CWE-285: Improper Authorization  
+  [https://cwe.mitre.org/data/definitions/285.html](https://cwe.mitre.org/data/definitions/285.html)
 
 ## Description
-Improper function definitions refer to situations where functions in smart contracts are defined with incorrect or inconsistent logic, parameter types, or return types. This can lead to unexpected behaviors and vulnerabilities in the contract. Common issues include:
+Lack of multisig governance occurs when critical smart contract functions, such as upgrades, fund withdrawals, or parameter changes, are controlled by a single entity. This creates a **single point of failure**, increasing the risk of **compromise, insider abuse, or unauthorized access**. Without multisig governance, attackers or malicious actors can easily exploit privileged functions if the private key of a single administrator is compromised.
 
-- **Inconsistent parameter types**: Functions that take or return parameters of unexpected or incorrect types.
-- **Misleading function names**: Functions with names that do not match their actual behavior.
-- **Incorrect visibility**: Functions that are defined with the wrong visibility, either exposing sensitive logic or causing issues with access control.
+Key risks associated with missing multisig governance:
+- **Centralization Risk**: A single entity can control and modify key contract parameters.
+- **Single Point of Failure**: Loss or compromise of the owner's private key can result in catastrophic consequences.
+- **Unauthorized Access**: An attacker gaining control of the private key can execute privileged functions without approval.
+- **Lack of Accountability**: Decisions are made unilaterally, reducing transparency and security.
 
 ## Remediation
-- **Ensure consistency with function signatures**: Validate that parameters, return types, and function names are correct and consistent with the intended contract logic.
-- **Review function visibility**: Double-check that functions are properly marked as `public`, `private`, `internal`, or `external` based on the intended access levels.
-- **Follow coding standards**: Adhere to established coding standards for smart contracts to ensure clarity and avoid issues with maintenance or security.
+- **Implement a Multisig Wallet**: Use multisignature schemes (e.g., Gnosis Safe) to require multiple signers for critical transactions.
+- **Role-Based Access Control (RBAC)**: Assign multiple roles with different privileges to prevent centralized control.
+- **Timelocks for Critical Functions**: Introduce a delay for privileged actions, allowing time for community intervention if needed.
+- **On-Chain Governance Mechanisms**: Decentralize decision-making using **DAO-based governance** where applicable.
 
-## Samples
+## Examples
 
-### Improper Function Definition
+### Example of a Contract Without Multisig Governance (Centralized Owner)
 
 ```solidity
-pragma solidity ^0.4.0;
+pragma solidity ^0.8.0;
 
-contract ImproperFunction {
-    uint public balance;
+contract CentralizedGovernance {
+    address public owner;
 
-    // Function is defined without specifying return type
-    function getBalance() {
-        return balance;  // Missing return type (should be 'uint')
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function upgradeContract(address newContract) public {
+        require(msg.sender == owner, "Only owner can upgrade");
+        // ❌ Only a single owner can perform critical actions
+    }
+
+    function withdrawFunds(address payable recipient, uint256 amount) public {
+        require(msg.sender == owner, "Only owner can withdraw funds");
+        recipient.transfer(amount); // ❌ No multisig verification
     }
 }
 ```
 
-### Correct Function Definition
+- In this example, all governance actions depend on a single owner, making it a high-risk design.
+
+### Refactored to Use Multisig Governance
+
 ```solidity
-pragma solidity ^0.4.0;
+pragma solidity ^0.8.0;
 
-contract CorrectFunction {
-    uint public balance;
+interface IMultiSig {
+    function submitTransaction(address destination, uint256 value, bytes calldata data) external;
+}
 
-    // Function correctly defined with return type 'uint'
-    function getBalance() public view returns (uint) {
-        return balance;
+contract SecureGovernance {
+    IMultiSig public multisigWallet;
+
+    constructor(address _multisigWallet) {
+        multisigWallet = IMultiSig(_multisigWallet);
+    }
+
+    function upgradeContract(address newContract) public {
+        bytes memory data = abi.encodeWithSignature("upgradeTo(address)", newContract);
+        multisigWallet.submitTransaction(address(this), 0, data); // ✅ Requires multisig approval
+    }
+
+    function withdrawFunds(address payable recipient, uint256 amount) public {
+        bytes memory data = abi.encodeWithSignature("transfer(address,uint256)", recipient, amount);
+        multisigWallet.submitTransaction(address(this), 0, data); // ✅ Multisig verification for withdrawals
     }
 }
 ```
+
+- This improved version delegates authority to a multisig wallet, requiring multiple approvals before executing critical actions.

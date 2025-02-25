@@ -1,75 +1,77 @@
 ---
-title: Presence of Unused Variables
+title: Hardcoded Constants
 id: SCWE-008
-alias: unused-variables
+alias: hardcoded-constants
 platform: []
 profiles: [L1]
 mappings:
   scsvs-cg: [SCSVS-CODE]
   scsvs-scg: [SCSVS-CODE-2]
-  cwe: [563]
+  cwe: [547]
 status: new
 ---
 
 ## Relationships
-- CWE-563: Assignment to Variable with No Effect
-  [https://cwe.mitre.org/data/definitions/563.html](https://cwe.mitre.org/data/definitions/563.html)
+- CWE-547: Use of Hard-coded, Security-relevant Constants
+  [https://cwe.mitre.org/data/definitions/547.html](https://cwe.mitre.org/data/definitions/547.html)
 
 ## Description
-The presence of unused variables in smart contracts refers to variables that are declared but never utilized in the contract logic. These variables consume storage or memory space unnecessarily, potentially wasting gas when deployed or executed. This situation often arises due to incomplete code, forgotten variables, or code that was intended for future use but never implemented. The presence of such variables increases the attack surface by making it harder to understand the contract and opens up potential vulnerabilities.
+Hardcoded constants refer to values that are embedded directly into the code and cannot be easily changed without modifying the code itself. These constants may include critical parameters, addresses, or settings that could be subject to change based on external factors or evolving needs. Hardcoding these values in the code introduces several issues:
 
-Some common risks include:
-- Wasted gas due to storage and memory consumption.
-- Increased complexity and difficulty in understanding contract behavior.
-- Potential confusion for auditors or future developers working on the contract.
-
-Unused variables can also hide logic errors or indicate that parts of the contract are not functioning as intended.
+- **Lack of flexibility**: Once the contract is deployed, these hardcoded values cannot be changed without deploying a new version, leading to inefficiency and reduced adaptability.
+- **Security risks**: Hardcoded values may expose sensitive information or create vulnerabilities if they are not properly protected.
+- **Upgrade challenges**: Contracts with hardcoded constants cannot easily evolve to support new functionality or parameters without requiring costly redeployment.
 
 ## Remediation
-- **Remove Unused Variables:** Ensure that any variables that are not required for the contract’s functionality are removed.
-- **Code Review and Refactoring:** Regularly review and refactor the code to eliminate dead or unnecessary variables.
-- **Automated Static Analysis Tools:** Use static analysis tools to detect unused variables and other unnecessary code patterns.
+- **Use variables instead of constants**: Instead of hardcoding values, define them as variables that can be updated through administrative actions.
+- **Implement upgradeable contract patterns**: Use proxy contracts or other patterns that support upgrades to allow flexibility in modifying constants.
+- **External configuration**: Use off-chain storage for configuration values that can be updated without needing to deploy new contract versions.
 
-## Samples
+## Examples
 
-### Contract with Unused Variables
+### Contract with Hardcoded Constants
 
 ```solidity
 pragma solidity ^0.4.0;
 
-contract UnusedVariables {
-    uint public balance;
-    uint public unusedVariable; // This variable is not used anywhere
+contract HardcodedConstants {
+    address public owner = 0x1234567890abcdef1234567890abcdef12345678; // Hardcoded address
+    uint public maxSupply = 1000000; // Hardcoded supply limit
 
-    function deposit(uint amount) public {
-        balance += amount;
+    function setOwner(address newOwner) public {
+        owner = newOwner;
     }
-    
-    function withdraw(uint amount) public {
-        balance -= amount;
+
+    function setMaxSupply(uint newMaxSupply) public {
+        maxSupply = newMaxSupply;
     }
 }
 ```
+In this example, the `owner` address and `maxSupply` are hardcoded values that cannot be changed without redeploying the contract. This reduces flexibility and creates potential security risks.
 
-In the example above, the `unusedVariable` is declared but never used within the contract. This is a waste of storage space and can confuse anyone reading or auditing the code.
 
-
-### Fixed Code with Unused Variables Removed
+### Improved Contract with External Configuration
 ```solidity
+
 pragma solidity ^0.4.0;
 
-contract FixedUnusedVariables {
-    uint public balance;
+contract ConfigurableContract {
+    address public owner;
+    uint public maxSupply;
 
-    function deposit(uint amount) public {
-        balance += amount;
+    constructor(address initialOwner, uint initialMaxSupply) public {
+        owner = initialOwner;
+        maxSupply = initialMaxSupply;
     }
-    
-    function withdraw(uint amount) public {
-        balance -= amount;
+
+    function setOwner(address newOwner) public {
+        owner = newOwner;
+    }
+
+    function setMaxSupply(uint newMaxSupply) public {
+        maxSupply = newMaxSupply;
     }
 }
-
 ```
-The improved contract removes the unnecessary `unusedVariable`, reducing the complexity and improving gas efficiency.
 
+In this improved example, the `owner` address and `maxSupply` are configurable through the constructor, allowing for more flexibility without the need for redeployment.
