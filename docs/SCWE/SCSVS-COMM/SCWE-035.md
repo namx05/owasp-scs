@@ -33,26 +33,51 @@ Insecure delegatecall usage refers to vulnerabilities that arise when using `del
 
     contract InsecureDelegatecall {
         function executeDelegatecall(address target, bytes memory data) public {
-            (bool success, ) = target.delegatecall(data); // No validation
+            (bool success, ) = target.delegatecall(data); // ❌ No validation, attacker-controlled contract can be used
             require(success, "Delegatecall failed");
         }
     }
     ```
+- Anyone can call `executeDelegatecall()` with a malicious contract, which will execute arbitrary code within the caller’s context.
+- Can lead to theft of funds, privilege escalation, or state corruption.
 
 - **Secure Delegatecall Usage**
     ```solidity
     pragma solidity ^0.8.0;
 
     contract SecureDelegatecall {
+        address public owner;
         address public trustedTarget;
 
+        modifier onlyOwner() {
+            require(msg.sender == owner, "Not authorized");
+            _;
+        }
+
         constructor(address _trustedTarget) {
+            owner = msg.sender;
             trustedTarget = _trustedTarget;
         }
 
-        function executeDelegatecall(bytes memory data) public {
-            (bool success, ) = trustedTarget.delegatecall(data); // Restricted to trusted target
+        function updateTrustedTarget(address _newTarget) public onlyOwner {
+            require(isTrusted(_newTarget), "Untrusted target");
+            trustedTarget = _newTarget;
+        }
+
+        function executeDelegatecall(bytes memory data) public onlyOwner {
+            require(trustedTarget != address(0), "Invalid target");
+            (bool success, ) = trustedTarget.delegatecall(data);
             require(success, "Delegatecall failed");
+        }
+
+        function isTrusted(address _target) internal pure returns (bool) {
+            // Implement further checks if needed
+            return _target != address(0);
         }
     }
     ```
+
+Fixes:
+- Only the contract owner can update trustedTarget.
+- Validation of trusted target before executing delegatecall.
+- Prevents arbitrary execution by restricting calls to trustedTarget.
