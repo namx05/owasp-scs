@@ -27,30 +27,38 @@ Insecure use of inline assembly refers to vulnerabilities that arise when low-le
 - **Test thoroughly:** Conduct extensive testing to ensure assembly code is secure.
 
 ## Examples
-- **Insecure Inline Assembly**
+- **Insecure Inline Assembly- Unsafe Type Casting Leads to Exploitable Overflow**
     ```solidity
     pragma solidity ^0.8.0;
 
     contract InsecureAssembly {
-        function add(uint a, uint b) public pure returns (uint) {
-            uint result;
+        function unsafeCast(uint256 value) public pure returns (uint8) {
+            uint8 result;
             assembly {
-                result := add(a, b)
+                result := value // Unsafe cast, truncating high bits
             }
             return result;
         }
     }
     ```
+⚠️ Why is this Vulnerable?
+- Casting a large uint256 into uint8 without bounds checking causes integer truncation.
+- If value = 257, it becomes 1 (256 is lost).
+- Attackers can bypass security checks if truncation affects authentication or balance checks.
 
-- **Secure High-Level Code**
+- **Secure High-Level Code- Restricted Use of Assembly with Input Validation**
     ```solidity
     pragma solidity ^0.8.0;
 
-    contract SecureHighLevel {
-        function add(uint a, uint b) public pure returns (uint) {
-            return a + b; // High-level code
+    contract SecureAssembly {
+        function safeCast(uint256 value) public pure returns (uint8) {
+            require(value <= type(uint8).max, "Value too large"); // Prevent truncation
+            return uint8(value);
         }
     }
     ```
+Fixes
+- Bounds checking (require) prevents unintended truncation.
+- Uses inline assembly only when absolutely necessary.
 
 ---
