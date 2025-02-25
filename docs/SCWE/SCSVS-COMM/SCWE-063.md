@@ -5,8 +5,8 @@ alias: insecure-event-emission
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: [SCSVS-AUD]
-  scsvs-scg: [SCSVS-AUD-2]
+  scsvs-cg: [SCSVS-COMM]
+  scsvs-scg: [SCSVS-COMM-2]
   cwe: [778]
 status: new
 ---
