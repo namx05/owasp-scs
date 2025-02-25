@@ -1,5 +1,5 @@
 ---
-title: Insecure Block Timestamp Usage
+title: Insecure use of Block Variables
 id: SCWE-031
 alias: insecure-block-timestamp-usage
 platform: []
