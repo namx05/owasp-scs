@@ -27,30 +27,59 @@ Lack of decentralized oracle sources refers to the reliance on a single oracle f
 - **Implement fallback mechanisms:** Use fallback oracles in case of failure.
 
 ## Examples
-- **Single Oracle Source**
+- **Single Oracle Source/ Single Point of Failure**
     ```solidity
     pragma solidity ^0.8.0;
+
+    interface Oracle {
+        function getPrice() external view returns (uint);
+    }
 
     contract SingleOracle {
-        function getPrice(address oracle) public view returns (uint) {
-            return Oracle(oracle).getPrice(); // Single oracle
+        Oracle public priceOracle;
+
+        constructor(address _oracle) {
+            priceOracle = Oracle(_oracle);
+        }
+
+        function getPrice() public view returns (uint) {
+            return priceOracle.getPrice(); // Single source of truth
         }
     }
     ```
 
-- **Decentralized Oracle Sources**
+Why is this vulnerable?
+- If the oracle fails, is compromised, or is manipulated, the contract has no fallback.
+- Attackers could hijack the single oracle and return malicious data.
+
+- **Decentralized Oracle Sources- Using Multiple Oracles & Fallbacks**
     ```solidity
     pragma solidity ^0.8.0;
 
-    contract DecentralizedOracles {
-        function getPrice(address[] memory oracles) public view returns (uint) {
-            uint totalPrice = 0;
-            for (uint i = 0; i < oracles.length; i++) {
-                totalPrice += Oracle(oracles[i]).getPrice();
+    interface Oracle {
+        function getPrice() external view returns (uint);
+    }
+
+    contract MultiOracle {
+        Oracle[] public priceOracles;
+
+        constructor(address[] memory _oracles) {
+            for (uint i = 0; i < _oracles.length; i++) {
+                priceOracles.push(Oracle(_oracles[i]));
             }
-            return totalPrice / oracles.length; // Average price from multiple oracles
+        }
+
+        function getPrice() public view returns (uint) {
+            uint totalPrice = 0;
+            for (uint i = 0; i < priceOracles.length; i++) {
+                totalPrice += priceOracles[i].getPrice();
+            }
+            return totalPrice / priceOracles.length; // Averaging multiple oracles
         }
     }
     ```
+Fixes:
+- Uses multiple oracles and computes an average to prevent manipulation.
+- If one oracle fails or gets compromised, the contract still functions correctly.
 
 ---

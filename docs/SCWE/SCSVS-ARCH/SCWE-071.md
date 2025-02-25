@@ -35,15 +35,28 @@ contract Example {
 }
 ```
 
+**Why is this vulnerable?**
+- `uninitializedPointer` is a storage pointer but is not assigned a reference to valid storage.
+- Writing to `uninitializedPointer.push(10);` could overwrite unintended storage locations.
+
+**Potential outcomes:**
+- Corrupting storage layout (e.g., overwriting contract variables).
+- Unexpected behaviors due to storage reallocation.
+
 ### Fixed Contract Example
 ```solidity
-contract Example {
-    uint[] public data;
+  contract Example {
+      uint[] public data;
 
-    function addData(uint _value) public {
-        data.push(_value);
-        uint[] storage initializedPointer = data;  // Properly initialized storage pointer
-        initializedPointer.push(10);  // Now safely interacting with the initialized pointer
-    }
-}
+      function addData(uint _value) public {
+          data.push(_value);
+          uint[] storage initializedPointer = data;  // ✅ Properly initialized storage pointer
+          initializedPointer.push(10);  // ✅ Safely interacts with the intended storage
+      }
+  }
 ```
+
+**Why is this safe?**
+- `initializedPointer` explicitly references `data`, ensuring that it does not point to an arbitrary storage slot.
+- Prevents unintended overwrites of contract state.
+- Ensures expected behavior and protects contract integrity.
