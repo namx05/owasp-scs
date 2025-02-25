@@ -27,31 +27,40 @@ Dependency on block gas limit refers to the reliance on the Ethereum block gas l
 - **Test thoroughly:** Conduct extensive testing to ensure operations stay within gas limits.
 
 ## Examples
-- **Gas-Intensive Operation**
+- **Gas-Intensive Operation- Storing Large Dynamic Data**
     ```solidity
     pragma solidity ^0.8.0;
 
     contract GasIntensive {
-        function processArray(uint[] memory data) public {
+        uint[] public largeArray;
+
+        function appendData(uint[] memory data) public {
             for (uint i = 0; i < data.length; i++) {
-                // Process each element
+                largeArray.push(data[i]); // Storing a large dataset in a single transaction
             }
         }
     }
     ```
+- This contract appends large arrays in a single transaction, which fails when the block gas limit is exceeded.
+- Attackers could exploit this by forcing high gas consumption and causing DoS attacks (e.g., filling storage inefficiently).
 
-- **Optimized Gas Usage**
+- **Optimized Gas Usage- Chunk Processing & Gas Efficiency**
     ```solidity
     pragma solidity ^0.8.0;
 
     contract GasOptimized {
-        function processArray(uint[] memory data, uint start, uint end) public {
+        uint[] public largeArray;
+
+        function appendData(uint[] memory data, uint start, uint end) public {
             require(end <= data.length, "Invalid range");
             for (uint i = start; i < end; i++) {
-                // Process each element
+                largeArray.push(data[i]); // Process in controlled batches
             }
         }
     }
     ```
 
+Why is this better?
+- The start and end parameters allow batch processing instead of handling everything in a single call.
+- Prevents hitting the block gas limit by splitting work across multiple transactions.
 ---
