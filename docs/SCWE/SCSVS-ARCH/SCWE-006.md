@@ -31,7 +31,7 @@ Inconsistent inheritance can significantly compromise a contract’s functionali
 - **Favor Single Inheritance or Controlled Multiple Inheritance:** Avoid overly complex inheritance structures; if multiple inheritance is necessary, consider using design patterns like the Diamond Problem Resolver (i.e., using interfaces or abstract contracts).
 - **Regular Audits:** Periodically audit the inheritance structure to identify any inconsistencies early on.
 
-## Samples
+## Examples
 
 ### Vulnerable Contract with Inconsistent Inheritance
 

@@ -44,7 +44,7 @@ hide:
 
 <br>
 
-<button class="scs-button" onclick="window.location.href='../SCWE';"> Access the Beta</button>
+<button class="scs-button" onclick="window.location.href='../SCWE';"> Access v0.0.1</button>
 
 </center>
 

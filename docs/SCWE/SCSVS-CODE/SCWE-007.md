@@ -1,93 +1,75 @@
 ---
-title: Unmaintainable Code Structure
+title: Presence of Unused Variables
 id: SCWE-007
-alias: unmaintainable-code-structure
+alias: unused-variables
 platform: []
 profiles: [L1]
 mappings:
   scsvs-cg: [SCSVS-CODE]
   scsvs-scg: [SCSVS-CODE-2]
-  cwe: [1104]
+  cwe: [563]
 status: new
 ---
 
 ## Relationships
-- CWE-1104: Use of Unmaintained Third Party Components
-  [https://cwe.mitre.org/data/definitions/1104.html](https://cwe.mitre.org/data/definitions/1104.html)
+- CWE-563: Assignment to Variable with No Effect
+  [https://cwe.mitre.org/data/definitions/563.html](https://cwe.mitre.org/data/definitions/563.html)
 
 ## Description
-Unmaintainable code structure refers to a situation where a contract's code is poorly organized, difficult to read, or hard to modify. This may occur due to poor naming conventions, excessive complexity, lack of modularization, and insufficient comments or documentation. It makes it difficult for developers to make changes, fix bugs, or extend functionality without introducing new errors.
+The presence of unused variables in smart contracts refers to variables that are declared but never utilized in the contract logic. These variables consume storage or memory space unnecessarily, potentially wasting gas when deployed or executed. This situation often arises due to incomplete code, forgotten variables, or code that was intended for future use but never implemented. The presence of such variables increases the attack surface by making it harder to understand the contract and opens up potential vulnerabilities.
 
-Some common problems include:
-- Excessive length of functions or contracts.
-- Lack of clear separation between different functionalities.
-- Redundant or poorly organized code leading to a high risk of introducing bugs during maintenance.
-- Inconsistent naming conventions and lack of documentation.
+Some common risks include:
+- Wasted gas due to storage and memory consumption.
+- Increased complexity and difficulty in understanding contract behavior.
+- Potential confusion for auditors or future developers working on the contract.
 
-Unmaintainable code structures increase the likelihood of introducing vulnerabilities, and they reduce the overall development efficiency, leading to costly mistakes.
+Unused variables can also hide logic errors or indicate that parts of the contract are not functioning as intended.
 
 ## Remediation
-- **Modularize the Code:** Break down large contracts or functions into smaller, more manageable pieces. This improves readability and maintainability.
-- **Follow Coding Standards:** Adhere to established coding standards and best practices to ensure consistent naming, formatting, and structure.
-- **Document the Code:** Provide detailed comments and documentation for complex sections of the code.
-- **Refactor Periodically:** Regularly refactor code to improve its structure, remove redundancy, and enhance readability.
+- **Remove Unused Variables:** Ensure that any variables that are not required for the contract’s functionality are removed.
+- **Code Review and Refactoring:** Regularly review and refactor the code to eliminate dead or unnecessary variables.
+- **Automated Static Analysis Tools:** Use static analysis tools to detect unused variables and other unnecessary code patterns.
 
-## Samples
+## Examples
 
-### Vulnerable Contract with Unmaintainable Code
+### Contract with Unused Variables
 
 ```solidity
 pragma solidity ^0.4.0;
 
-contract Unmaintainable {
+contract UnusedVariables {
     uint public balance;
+    uint public unusedVariable; // This variable is not used anywhere
 
     function deposit(uint amount) public {
-        // Complex code here, no documentation, hard to maintain
         balance += amount;
-        uint temp = amount;
-        uint result = temp + 1;
-        temp = temp - 2;
-        // More redundant or complex logic
     }
-
+    
     function withdraw(uint amount) public {
-        // Complex code here, no documentation, hard to maintain
         balance -= amount;
-        uint temp = amount;
-        uint result = temp * 2;
-        temp = temp / 3;
-        // More redundant or complex logic
     }
 }
 ```
 
-In the above example, both `deposit` and `withdraw` functions have redundant logic, and the lack of documentation makes it hard to maintain or modify the contract. Additionally, the functions are unnecessarily complex, making future changes prone to errors.
+In the example above, the `unusedVariable` is declared but never used within the contract. This is a waste of storage space and can confuse anyone reading or auditing the code.
 
-### Improved Code Structure with Modularization
+
+### Fixed Code with Unused Variables Removed
 ```solidity
 pragma solidity ^0.4.0;
 
-contract Deposit {
+contract FixedUnusedVariables {
     uint public balance;
 
     function deposit(uint amount) public {
         balance += amount;
     }
-}
-
-contract Withdraw {
-    uint public balance;
-
+    
     function withdraw(uint amount) public {
         balance -= amount;
     }
 }
 
-contract Bank is Deposit, Withdraw {
-    // Clear separation between Deposit and Withdraw functionality
-    // Each contract now focuses on one responsibility, making it easier to maintain and extend
-}
 ```
-In the improved version, the contract is modularized. The `Deposit` and `Withdraw` contracts are separated into different contracts, each handling one responsibility. The Bank contract then combines these functionalities in a clean and maintainable way.
+The improved contract removes the unnecessary `unusedVariable`, reducing the complexity and improving gas efficiency.
 

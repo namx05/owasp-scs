@@ -1,89 +1,53 @@
 ---
-title: Lack of Emergency Stop Mechanism
+title: Poor Governance Documentation
 id: SCWE-015
-alias: lack-of-emergency-stop
+alias: poor-governance-documentation
 platform: []
 profiles: [L1]
 mappings:
   scsvs-cg: [SCSVS-GOV]
   scsvs-scg: [SCSVS-GOV-3]
-  cwe: [693]
+  cwe: [933]
 status: new
 ---
 
 ## Relationships
-- **CWE-693**: Protection Mechanism Failure  
-  [CWE-693](https://cwe.mitre.org/data/definitions/693.html)
+- CWE-933: Security Misconfiguration  
+  [https://cwe.mitre.org/data/definitions/933.html](https://cwe.mitre.org/data/definitions/933.html)
+
+- CWE-1118: Insufficient Documentation of Error Handling Techniques
+    [https://cwe.mitre.org/data/definitions/1118.html](https://cwe.mitre.org/data/definitions/1118.html)
 
 ## Description
-A Lack of Emergency Stop Mechanism refers to the absence of a built-in feature in a smart contract that allows for halting or pausing critical operations during emergencies. This mechanism is essential for mitigating risks like a discovered vulnerability, unexpected behavior, or a malicious attack. Without this safeguard, the contract may continue executing malicious actions or suffer irreversible damage. The ability to stop critical functions provides an important recovery measure in scenarios where an exploit is detected or control needs to be regained.
+Poor governance documentation refers to the **lack of clear, transparent, and publicly accessible records** regarding a smart contract system’s decision-making processes, upgrade mechanisms, and role-based permissions. Without proper documentation, **users, developers, and auditors struggle to understand the governance model**, leading to **reduced trust, misconfigurations, and potential security vulnerabilities**.
 
-Key risks:
-- Continuous execution of harmful or malicious actions without control.
-- Difficulty in recovering from unexpected failures.
-- Increased vulnerability to hacks or exploitation.
+Key risks associated with poor governance documentation:
+- **Unclear Decision-Making Process**: Users may not understand how governance proposals are initiated, approved, or executed.
+- **Hidden Centralization Risks**: Critical governance powers may be concentrated in a small group without public awareness.
+- **Lack of Upgradeability Transparency**: If upgrade procedures are not well-documented, malicious or unintended changes may go unnoticed.
+- **Poor Incident Response Handling**: Without clear emergency protocols, governance failures can lead to slow or inadequate responses to attacks.
 
 ## Remediation
-- **Implement a pausable contract pattern**: Use the `Pausable` contract from the OpenZeppelin library to implement a mechanism that allows authorized users (e.g., the owner or a governance entity) to pause and unpause certain critical contract functions.
-- **Limit emergency stop to critical functions**: Ensure that only critical functions can be paused to minimize the impact on the rest of the system's operation.
-- **Implement role-based access control**: Use a role-based mechanism to control who has the ability to pause or unpause functions, reducing the risk of unauthorized access.
+- **Comprehensive Governance Documentation**: Clearly outline roles, permissions, voting mechanisms, and upgradeability in technical and non-technical formats.
+- **Public Governance Reports**: Regularly publish governance decisions, major votes, and protocol updates in a transparent manner.
+- **Well-Defined Emergency Procedures**: Establish and document response plans for governance failures, protocol attacks, or keyholder compromises.
+- **On-Chain Governance Visibility**: Ensure that governance smart contracts expose relevant functions for transparency and accountability.
+- **Third-Party Audits of Governance Mechanisms**: Periodically review governance documentation and processes through independent audits.
 
-## Samples
+## Examples
+Unlike code vulnerabilities, **poor governance documentation is a process failure rather than a direct coding flaw**. However, its consequences can be illustrated with real-world governance failures:
 
-### Lack of Emergency Stop Mechanism Example
-```solidity
-pragma solidity ^0.8.0;
+### Example: Unclear Upgradeability Policy Leads to a Security Breach
+A DeFi protocol allows smart contract upgrades but **fails to document the governance process for approving upgrades**. A small group of developers, holding majority control over the governance multisig, **pushes an unreviewed upgrade** that introduces a critical vulnerability, resulting in a protocol exploit.
 
-contract NoEmergencyStop {
-    address public owner;
-    uint public criticalValue;
+### Fixed: Ensuring Transparent Upgradeability Policies
+Protocols should establish a clear and documented upgradeability framework outlining who can propose, review, and approve upgrades. Implementing timelocks, community review periods, and independent security audits ensures upgrades are thoroughly vetted before execution. Additionally, maintaining an on-chain governance audit log enhances accountability and prevents unauthorized changes.
 
-    constructor() {
-        owner = msg.sender;
-    }
 
-    // This function is critical and lacks an emergency stop mechanism
-    function updateCriticalValue(uint newValue) public {
-        require(msg.sender == owner, "Only the owner can update this value");
-        criticalValue = newValue;
-    }
-}
-```
-In the `NoEmergencyStop` contract, there is no way to stop or pause critical operations, which makes it vulnerable to continued exploitation if an issue arises.
+### Example: Lack of Transparency in Governance Voting
+A DAO implements an **opaque governance process**, where voting power is controlled by a few insiders without **a clear framework on how votes are counted or executed**. Community members later discover that **critical protocol changes were pushed without public discussion**, leading to governance disputes and loss of user trust.
 
-### Fixed: Emergency Stop Mechanism Example
+### Enhancing Transparency in Governance Voting
+Governance processes should be transparent, well-documented, and resistant to centralization risks to maintain trust. Clearly defining voting mechanisms, proposal review procedures, and decision-making criteria prevents manipulation and governance capture. Public governance discussions, decentralized voting structures, and immutable records of voting outcomes further enhance credibility and community trust.
 
-```solidity
-pragma solidity ^0.8.0;
-
-import "@openzeppelin/contracts/security/Pausable.sol";
-
-contract EmergencyStopExample is Pausable {
-    address public owner;
-    uint public criticalValue;
-
-    constructor() {
-        owner = msg.sender;
-    }
-
-    // Critical function that can be paused in case of emergency
-    function updateCriticalValue(uint newValue) public whenNotPaused {
-        require(msg.sender == owner, "Only the owner can update this value");
-        criticalValue = newValue;
-    }
-
-    // Emergency stop function to pause the contract
-    function emergencyStop() public {
-        require(msg.sender == owner, "Only the owner can stop the contract");
-        _pause();  // Pauses the contract
-    }
-
-    // Emergency restart function to unpause the contract
-    function resumeOperations() public {
-        require(msg.sender == owner, "Only the owner can resume the contract");
-        _unpause();  // Resumes the contract
-    }
-}
-
-```
-The `EmergencyStopExample` contract implements the `Pausable` pattern, which allows the contract owner to pause and unpause critical functions using the `emergencyStop` and `resumeOperations` functions. This ensures that if a vulnerability is discovered or a critical issue occurs, the contract can be halted temporarily to prevent further damage.
+---

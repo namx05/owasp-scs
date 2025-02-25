@@ -30,7 +30,7 @@ Common causes of insecure signature verification include:
 - **Use secure signature formats:** Make sure that signature formats are validated properly (e.g., ensure proper handling of `v`, `r`, `s` values in Ethereum signatures).
 - **Implement checks before acting on the signature:** Always perform checks for valid signature and relevant parameters before executing any logic that could be influenced by the signature.
 
-## Samples
+## Examples
 
 ### Insecure Signature Verification
 
