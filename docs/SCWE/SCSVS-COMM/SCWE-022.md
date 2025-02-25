@@ -45,8 +45,8 @@ Message replay vulnerabilities occur when an attacker can reuse a valid message 
     contract ReplayProtected {
         mapping(bytes32 => bool) public usedMessages;
 
-        function processMessage(bytes memory message, uint nonce) public {
-            bytes32 messageHash = keccak256(abi.encodePacked(message, nonce));
+        function processMessage(bytes memory message, uint nonce, uint chainId) public {
+            bytes32 messageHash = keccak256(abi.encodePacked(message, nonce, chainId));
             require(!usedMessages[messageHash], "Message already used");
             usedMessages[messageHash] = true;
             // Process message
