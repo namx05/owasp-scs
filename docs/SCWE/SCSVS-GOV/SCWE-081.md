@@ -35,13 +35,51 @@ contract Example {
 ```
 ### Fixed Contract Example
 ```solidity
-contract Example {
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract SecureExample {
     mapping(address => uint256) public nonces;
 
-    function transfer(address _to, uint256 _amount, uint256 _nonce) public {
+    function transfer(
+        address _to,
+        uint256 _amount,
+        uint256 _nonce,
+        bytes memory _signature
+    ) public {
         require(_nonce == nonces[msg.sender], "Invalid nonce");
+
+        // Hash the message
+        bytes32 messageHash = keccak256(abi.encodePacked(msg.sender, _to, _amount, _nonce));
+        bytes32 ethSignedMessageHash = keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", messageHash));
+
+        // Recover the signer's address
+        address signer = recoverSigner(ethSignedMessageHash, _signature);
+        require(signer == msg.sender, "Invalid signature");
+
         nonces[msg.sender] = _nonce + 1;
         // Transfer logic
     }
+
+    function recoverSigner(bytes32 _ethSignedMessageHash, bytes memory _signature) internal pure returns (address) {
+        (bytes32 r, bytes32 s, uint8 v) = splitSignature(_signature);
+        return ecrecover(_ethSignedMessageHash, v, r, s);
+    }
+
+    function splitSignature(bytes memory sig) internal pure returns (bytes32 r, bytes32 s, uint8 v) {
+        require(sig.length == 65, "Invalid signature length");
+        assembly {
+            r := mload(add(sig, 32))
+            s := mload(add(sig, 64))
+            v := byte(0, mload(add(sig, 96)))
+        }
+    }
 }
 ```
+
+Why is this better?
+- Nonce is no longer user input: It is validated as part of a signed message, preventing arbitrary replay attempts.
+- Prevents transaction replay attacks: By signing the message, an attacker cannot reuse an old transaction because the signature includes the nonce.
+- Ensures integrity & authenticity: The contract only processes the transaction if the signed message is valid and matches the expected sender.
+
+---

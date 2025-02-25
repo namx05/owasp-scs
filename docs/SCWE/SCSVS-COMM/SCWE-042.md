@@ -43,18 +43,33 @@ Insecure use of external calls refers to vulnerabilities that arise when calling
     ```solidity
     pragma solidity ^0.8.0;
 
+    interface ITrustedContract {
+        function executeAction(uint256 param) external;
+    }
+
     contract SecureExternalCall {
-        address public trustedTarget;
+        address public immutable trustedTarget;
+        address public owner;
 
         constructor(address _trustedTarget) {
             trustedTarget = _trustedTarget;
+            owner = msg.sender;
         }
 
-        function callExternal(bytes memory data) public {
-            (bool success, ) = trustedTarget.call(data); // Restricted to trusted target
-            require(success, "Call failed");
+        modifier onlyOwner() {
+            require(msg.sender == owner, "Unauthorized");
+            _;
+        }
+
+        function callExternal(uint256 param) public onlyOwner {
+            ITrustedContract(trustedTarget).executeAction(param);
         }
     }
     ```
+Why is this secure?
+- No arbitrary data input—Only predefined `function executeAction(uint256)` can be called.
+- Access control added—Only the owner can execute external calls.
+- Interface-based call—Avoids raw `.call()`, reducing attack vectors.
+- Immutable trusted address—Prevents runtime modifications to the target contract.
 
 ---

@@ -27,14 +27,24 @@ Insecure use of modifiers refers to vulnerabilities that arise when modifiers ar
 - **Test thoroughly:** Conduct extensive testing to ensure modifiers are secure.
 
 ## Examples
-- **Insecure Modifier Usage**
+- **Insecure Modifier Usage (With Storage Bug)**
     ```solidity
     pragma solidity ^0.8.0;
 
     contract InsecureModifier {
+        address public admin;
+
+        constructor(address _admin) {
+            admin = _admin; // ❌ Storage bug: Allows setting admin to zero address.
+        }
+
         modifier onlyAdmin() {
-            require(msg.sender == address(0), "Unauthorized"); // Insecure condition
+            require(admin == address(0), "Unauthorized"); // ❌ Wrong condition, only works if admin is zero!
             _;
+        }
+
+        function updateAdmin(address newAdmin) public onlyAdmin {
+            admin = newAdmin; // ❌ Can set admin to zero address, breaking access control.
         }
 
         function updateBalance(uint newBalance) public onlyAdmin {
@@ -42,6 +52,16 @@ Insecure use of modifiers refers to vulnerabilities that arise when modifiers ar
         }
     }
     ```
+
+
+**Why is this Insecure?**
+- Wrong Condition in `onlyAdmin()`
+    - `require(admin == address(0), "Unauthorized");` only allows function execution when admin is zero.
+    - This means no valid admin can ever execute admin functions!
+    - If admin is ever non-zero, all `onlyAdmin` functions become unusable.
+    
+- Loss of Control
+    - If admin is accidentally set to `address(0)`, anyone can now execute admin functions, breaking security
 
 - **Secure Modifier Usage**
     ```solidity
@@ -51,16 +71,30 @@ Insecure use of modifiers refers to vulnerabilities that arise when modifiers ar
         address public admin;
 
         constructor(address _admin) {
+            require(_admin != address(0), "Invalid admin address"); // ✅ Proper validation
             admin = _admin;
         }
 
         modifier onlyAdmin() {
-            require(msg.sender == admin, "Unauthorized"); // Secure condition
+            require(msg.sender == admin, "Unauthorized"); // ✅ Correctly restricts access
             _;
         }
 
+        function updateAdmin(address newAdmin) public onlyAdmin {
+            require(newAdmin != address(0), "New admin cannot be zero address"); // ✅ Prevents admin loss
+            admin = newAdmin;
+        }
+
         function updateBalance(uint newBalance) public onlyAdmin {
-            // Update balance
+            // Update balance securely
         }
     }
     ```
+
+**Why is this Secure?**
+- Proper access control in `onlyAdmin()`
+    - `require(msg.sender == admin, "Unauthorized");` ensures only the correct admin can execute admin functions.
+        - Prevents privilege escalation
+- `updateAdmin()` prevents setting `admin = address(0)`, avoiding unintended loss of access.
+
+---

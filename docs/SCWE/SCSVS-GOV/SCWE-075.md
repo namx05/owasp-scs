@@ -1,34 +1,41 @@
 ---
-title: Unexpected Ether Balance
+title: Incorrect Ether Balance Tracking
 id: SCWE-075
-alias: unexpected-ether-balance
+alias: incorrect-ether-balance
 platform: []
 profiles: [L1]
 mappings:
   scsvs-cg: [SCSVS-GOV]
   scsvs-scg: [SCSVS-GOV-3]
-  cwe: [665]
+  cwe: [852]  # CWE-852: Untrusted Control Sphere (External Ether Transfers)
 status: new
 ---
 
 ## Relationships  
-- CWE-665: Improper Initialization  
-  [https://cwe.mitre.org/data/definitions/665.html](https://cwe.mitre.org/data/definitions/665.html)  
+- CWE-852: Untrusted Control Sphere  
+  [https://cwe.mitre.org/data/definitions/852.html](https://cwe.mitre.org/data/definitions/852.html)  
 
 ## Description
-When a contract does not properly initialize its state, it may lead to an unexpected Ether balance. This issue arises when a contract either fails to set an initial Ether balance or allows the Ether balance to be manipulated by external contracts. This can lead to errors in contract logic, such as unauthorized withdrawals or incorrect balance tracking.
+Incorrect Ether balance tracking occurs when a contract manually maintains an internal balance variable instead of relying on `address(this).balance`. This creates inconsistencies when Ether is received outside of expected functions (e.g., via `selfdestruct()`, `transfer()`, or direct deposits).  
+
+Attackers can exploit this by artificially inflating the contract's perceived balance, leading to unauthorized withdrawals or failed transactions. This issue is common in poorly designed deposit/withdraw systems that do not properly verify the actual contract balance.
+
+## Attack Scenario
+An attacker sends Ether to the contract using `selfdestruct()`, increasing its actual balance without updating the internal tracking variable. Later, a user tries to withdraw funds, but the contract incorrectly assumes it has more Ether than it actually does, causing unexpected failures or exploits.
 
 ## Remediation
-Ensure that all state variables, especially those related to Ether balances, are properly initialized when the contract is deployed. Use `constructor` functions to set initial balances and carefully track Ether transfers.
+- **Use `address(this).balance`** instead of manually tracking Ether balance.
+- **Prevent external Ether deposits** by disabling the fallback function unless explicitly needed.
+- **Ensure proper accounting** by always reconciling balances before allowing withdrawals.
 
 ### Vulnerable Contract Example
 ```solidity
-contract Example {
-    uint public balance;
+// ❌ Vulnerable to incorrect balance tracking due to external Ether deposits
+contract IncorrectBalanceTracking {
+    uint public balance;  // ❌ Manually tracking Ether balance
 
-    // Uninitialized balance leading to unexpected results
     function deposit() public payable {
-        balance = balance + msg.value;
+        balance += msg.value;
     }
 
     function withdraw(uint _amount) public {
@@ -38,24 +45,32 @@ contract Example {
     }
 }
 ```
+**Why is this vulnerable?**
+- The contract does not account for direct Ether transfers outside deposit().
+- An attacker can send Ether via `selfdestruct()`, inflating the contract balance without updating balance.
+- This can lead to withdrawals being blocked or excessive withdrawals.
+
 ### Fixed Contract Example
+
 ```solidity
-contract Example {
-    uint public balance;
-
-    // Proper initialization of the balance
-    constructor() {
-        balance = 0;
-    }
-
-    function deposit() public payable {
-        balance = balance + msg.value;
-    }
+// ✅ Secure implementation that tracks actual balance correctly
+contract CorrectBalanceTracking {
+    function deposit() public payable {}
 
     function withdraw(uint _amount) public {
-        require(balance >= _amount, "Insufficient funds");
+        require(address(this).balance >= _amount, "Insufficient funds");  // ✅ Correct balance check
         payable(msg.sender).transfer(_amount);
-        balance -= _amount;
+    }
+
+    // Optional: Prevent direct Ether transfers
+    receive() external payable {
+        revert("Direct deposits not allowed");
     }
 }
 ```
+**Why is this secure?**
+- Uses `address(this).balnce` for accurate balance tracking.
+- Prevents external deposits unless explicitly intended.
+- No manual `balance` variable, reducing risk of inconsistencies.
+
+---
