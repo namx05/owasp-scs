@@ -31,7 +31,7 @@ Key risks associated with unauthorized parameter changes:
 - **On-Chain Governance for DAOs**: Utilize decentralized governance mechanisms where stakeholders vote on parameter updates.
 - **Emit Events for Transparency**: Log all parameter changes on-chain to ensure visibility and auditability.
 
-## Samples
+## Examples
 
 ### Example of a Contract With Unauthorized Parameter Changes (Centralized Control)
 

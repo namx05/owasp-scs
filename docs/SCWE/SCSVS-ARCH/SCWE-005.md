@@ -26,7 +26,7 @@ This vulnerability can lead to critical failures, including the redirection of c
 - **Transparent Proxy Pattern:** Use patterns that prevent unauthorized contract logic changes, such as the Transparent Proxy Pattern.
 - **Audit Proxy Logic Regularly:** Conduct regular audits to ensure that the upgrade mechanism is secure and follows best practices.
 
-## Samples
+## Examples
 
 ### Vulnerable Proxy Contract
 

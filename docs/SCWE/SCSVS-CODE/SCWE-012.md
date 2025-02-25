@@ -30,7 +30,7 @@ Key risks associated with missing multisig governance:
 - **Timelocks for Critical Functions**: Introduce a delay for privileged actions, allowing time for community intervention if needed.
 - **On-Chain Governance Mechanisms**: Decentralize decision-making using **DAO-based governance** where applicable.
 
-## Samples
+## Examples
 
 ### Example of a Contract Without Multisig Governance (Centralized Owner)
 

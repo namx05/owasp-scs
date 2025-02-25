@@ -29,7 +29,7 @@ Common causes include:
 - **Use of trusted or immutable sources:** Ensure that privileged roles cannot be arbitrarily changed by unauthorized users or during attacks.
 - **Periodic reviews and audits:** Regularly review roles and permissions to ensure they are correctly assigned and maintained.
 
-## Samples
+## Examples
 
 ### Privileged Role Mismanagement Example
 

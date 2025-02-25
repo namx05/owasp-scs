@@ -27,7 +27,7 @@ The use of `tx.origin` for authorization is a security vulnerability in which a 
 - **Use `msg.sender` instead of `tx.origin`**: Always rely on `msg.sender` for authentication and authorization, as it correctly represents the immediate sender of the current call.
 - **Strict validation checks**: Ensure that authorization checks are done on the direct sender of the transaction, i.e., `msg.sender`, and not the originator.
 
-## Samples
+## Examples
 
 ### Vulnerable Contract (Using `tx.origin` for Authorization)
 ```solidity
