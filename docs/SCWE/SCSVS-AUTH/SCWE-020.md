@@ -29,7 +29,7 @@ Time-locking is commonly used in scenarios like:
 - **Limit emergency access:** If implementing emergency mechanisms, ensure that there are time delays before they can be invoked, to reduce the chance of misuse.
 - **Review time-based logic regularly:** Verify the correctness of time-based logic to ensure that the system behaves as intended.
 
-## Samples
+## Examples
 
 ### Absence of Time-Locked Function
 
