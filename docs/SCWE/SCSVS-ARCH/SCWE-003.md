@@ -24,96 +24,124 @@ Lack of modularity refers to a design flaw where a system's components are not s
 - **Simplify Logic:** Avoid unnecessary complexity by streamlining the contract's logic and removing redundant code.
 - **Regular Audits:** Conduct periodic code reviews and audits to identify and address areas of excessive complexity.
 
-## Samples
+## Examples
 
 ### Example of Lack of Modularity:
 
 ```solidity
-pragma solidity ^0.4.0;
+pragma solidity ^0.8.0;
 
-contract MonolithicContract {
-    uint public balance;
-    address public owner;
-    mapping(address => uint) public allowances;
+contract TightlyCoupledContract {
+    mapping(address => uint) public balances;
+    mapping(address => mapping(address => uint)) public allowances;
 
-    function deposit(uint value) public {
-        balance += value;
+    function deposit() public payable {
+        balances[msg.sender] += msg.value;
     }
 
-    function withdraw(uint value) public {
-        require(balance >= value, "Insufficient funds");
-        balance -= value;
+    function withdraw(uint amount) public {
+        require(balances[msg.sender] >= amount, "Insufficient funds");
+        balances[msg.sender] -= amount;
+        payable(msg.sender).transfer(amount);
     }
 
-    function transfer(address to, uint value) public {
-        require(balance >= value, "Insufficient funds");
-        balance -= value;
-        to.transfer(value);
+    function transfer(address to, uint amount) public {
+        require(balances[msg.sender] >= amount, "Insufficient funds");
+        balances[msg.sender] -= amount;
+        balances[to] += amount;
     }
 
-    function approve(address spender, uint value) public {
-        allowances[spender] = value;
+    function approve(address spender, uint amount) public {
+        allowances[msg.sender][spender] = amount;
     }
 
-    function transferFrom(address from, address to, uint value) public {
-        require(allowances[from] >= value, "Allowance exceeded");
-        allowances[from] -= value;
-        to.transfer(value);
-    }
-
-    function changeOwner(address newOwner) public {
-        owner = newOwner;
+    function transferFrom(address from, address to, uint amount) public {
+        require(allowances[from][msg.sender] >= amount, "Allowance exceeded");
+        allowances[from][msg.sender] -= amount;
+        balances[from] -= amount;
+        balances[to] += amount;
     }
 }
 ```
+
+**Problem:** Instead of separating concerns into independent, reusable modules, everything is handled within one contract.
+
+Why is this lack of modularity?
+
+- Single contract handling multiple responsibilities (balance management, approvals, transfers).
+- Code is not reusable: If another contract needs balance functions, it must copy-paste this logic.
+- Testing is harder: Changing transfer() might break withdraw(), as they're tightly coupled.
 
 ### Refactored with Modular Design:
 
 ```solidity
-pragma solidity ^0.4.0;
+pragma solidity ^0.8.0;
 
-contract Balance {
-    uint public balance;
-
-    function deposit(uint value) public {
-        balance += value;
+library BalanceLibrary {
+    struct Data {
+        mapping(address => uint) balances;
     }
 
-    function withdraw(uint value) public {
-        require(balance >= value, "Insufficient funds");
-        balance -= value;
+    function deposit(Data storage self, address user, uint amount) internal {
+        self.balances[user] += amount;
     }
-}
 
-contract Transfer {
-    uint public balance;
-
-    function transfer(address to, uint value) public {
-        require(balance >= value, "Insufficient funds");
-        balance -= value;
-        to.transfer(value);
+    function withdraw(Data storage self, address user, uint amount) internal {
+        require(self.balances[user] >= amount, "Insufficient funds");
+        self.balances[user] -= amount;
+        payable(user).transfer(amount);
     }
 }
 
-contract Allowance {
-    mapping(address => uint) public allowances;
-
-    function approve(address spender, uint value) public {
-        allowances[spender] = value;
+library AllowanceLibrary {
+    struct Data {
+        mapping(address => mapping(address => uint)) allowances;
     }
 
-    function transferFrom(address from, address to, uint value) public {
-        require(allowances[from] >= value, "Allowance exceeded");
-        allowances[from] -= value;
-        to.transfer(value);
+    function approve(Data storage self, address owner, address spender, uint amount) internal {
+        self.allowances[owner][spender] = amount;
+    }
+
+    function transferFrom(
+        Data storage self,
+        BalanceLibrary.Data storage balances,
+        address from,
+        address to,
+        uint amount
+    ) internal {
+        require(self.allowances[from][msg.sender] >= amount, "Allowance exceeded");
+        require(balances.balances[from] >= amount, "Insufficient funds");
+
+        self.allowances[from][msg.sender] -= amount;
+        balances.balances[from] -= amount;
+        balances.balances[to] += amount;
     }
 }
 
-contract Ownership {
-    address public owner;
+contract ModularContract {
+    using BalanceLibrary for BalanceLibrary.Data;
+    using AllowanceLibrary for AllowanceLibrary.Data;
 
-    function changeOwner(address newOwner) public {
-        owner = newOwner;
+    BalanceLibrary.Data private balances;
+    AllowanceLibrary.Data private allowances;
+
+    function deposit() public payable {
+        balances.deposit(msg.sender, msg.value);
+    }
+
+    function withdraw(uint amount) public {
+        balances.withdraw(msg.sender, amount);
+    }
+
+    function approve(address spender, uint amount) public {
+        allowances.approve(msg.sender, spender, amount);
+    }
+
+    function transferFrom(address from, address to, uint amount) public {
+        allowances.transferFrom(balances, from, to, amount);
     }
 }
+
 ```
+
+**Solution:** Use libraries for shared functionality and separate contract concerns. Now, storage is separated, reusable libraries are used, and responsibilities are divided!
