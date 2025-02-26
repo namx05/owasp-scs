@@ -356,7 +356,7 @@ extra:
     - icon: fontawesome/brands/slack
       link: https://owasp.slack.com/archives/C07MNDE6TPZ
     - icon: fontawesome/brands/twitter 
-      link: https://twitter.com/owasp_scs
+      link: https://x.com/scs_owasp
     - icon: fontawesome/brands/github
       link: https://github.com/OWASP/owasp-scs/discussions
   tags:
