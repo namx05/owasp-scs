@@ -21,7 +21,7 @@ While both the SCSVS and the SCSTG are created and maintained by the community o
 
 <center>
 <a href="https://owasp.org/donate/?reponame=owasp-scs&title=OWASP+Smart+Contract+Security" class="md-button md-button--primary" style="margin: 5px;">:white_heart:{ .pump } Donate</a>
-<a href="https://leanpub.com/owasp-scs" class="md-button md-button--primary" style="margin: 5px;">:material-book-heart: Purchase the SCSTG</a>
+<a href="https://leanpub.com/www-project-smart-contract-security-testing-guide" class="md-button md-button--primary" style="margin: 5px;">:material-book-heart: Purchase the SCSTG</a>
 </center>
 
 **Effort Based:** You can instead support the project by contributing with your work and end up at our [acknowledgement section](SCSTG/0x02c-Acknowledgements.md "SCSTG acknowledgements").
