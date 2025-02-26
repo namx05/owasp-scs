@@ -5,8 +5,8 @@ alias: improper-mapping-deletion
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: [SCSVS-STORAGE]
-  scsvs-scg: [SCSVS-STORAGE-1]
+  scsvs-cg: [SCSVS-CODE]
+  scsvs-scg: [SCSVS-CODE-1]
   cwe: [459]
 status: new
 ---
