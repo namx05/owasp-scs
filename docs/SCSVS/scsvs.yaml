@@ -273,6 +273,40 @@ groups:
         security posture of the smart contracts?
       - Is there a feedback loop for integrating audit findings and monitoring results
         into the mitigation strategy?
+    - rid: S1.G.1
+      requirement: Understanding Protocol Actors
+      testname: Understanding Protocol Actors
+      checklist:
+      - Have all actors and their interactions within the protocol been clearly identified
+        and documented?
+      - Are the roles and permissions of each actor clearly defined and appropriate?
+    - rid: S1.G.1
+      requirement: Function Overriding
+      testname: Verify Function Overriding
+      checklist:
+      - Does the contract inherit functions from parent contracts?
+      - Are functions that override parent contract functions explicitly marked with the
+        override keyword?
+    - rid: S1.G.3
+      requirement: Sybil Attack Protection
+      testname: Verify Sybil Attack Protection
+      checklist:
+      - Is the protocol's quorum mechanism or rewarding system designed to resist Sybil
+        attacks? Verify the criteria used for participation or rewards.
+      - How does the contract ensure that actions or decisions are not unduly influenced
+        by Sybil attacks?
+      - Are there checks or balances in place to validate the legitimacy of addresses
+        participating in quorum or rewarding mechanisms?
+    - rid: S1.G.4
+      requirement: Initializer Front Running
+      testname: Verify Front-Running Protection for Initializer
+      checklist:
+      - Does the contract use a factory pattern or other mechanism to prevent front-running
+        of the initializer function?
+      - Is the initializer function protected from being called by unauthorized parties
+        immediately after deployment?
+      - Have you implemented safeguards to ensure the initializer cannot be front-run
+        to alter critical access controls?
 - gid: SCSVS-CODE
   index: 2
   title: 'Policies, Procedures, and Code Management '
