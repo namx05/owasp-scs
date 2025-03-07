@@ -649,219 +649,219 @@ groups:
       - Are there any functions that are currently public or external but could be restricted
         to internal or private?
       - Does the contract expose any sensitive operations or state changes to external parties that should be restricted?
-- cid: SCSVS-GOV-2
-  objective: TBD
-  requirements:
-  - rid: S3.2.G1
-    requirement: Verify ERC20 Compliance
-    testname: Verify ERC20 Compliance
-    checklist:
-    - Are the token's transfer functions (transfer, transferFrom) fully compliant with
-      the EIP20 standard, including returning a boolean flag and reverting on failure?
-    - Are safe transfer functions (safeTransfer, safeTransferFrom) consistently used
-      throughout the contract?
-  - rid: S3.2.G2
-    requirement: Verify Approval Race Condition
-    testname: Verify Approval Race Condition
-    checklist:
-    - Is there a risk of race conditions in the approval process that could lead to
-      unexpected fund loss for the signer?
-    - Are there mechanisms in place to prevent double-spending or front-running attacks?
-  - rid: S3.2.G3
-    requirement: Verify Decimal Discrepancies
-    testname: Verify Decimal Discrepancies
-    checklist:
-    - Could differences in the number of decimals between various ERC20 tokens lead
-      to calculation or interpretation errors?
-    - Are there any conversions or calculations that might be affected by differing
-      decimal places?
-  - rid: S3.2.G4
-    requirement: Caller Checking
-    testname: Verify Caller Checking
-    checklist:
-    - Does the function restrict calls to only externally owned accounts (EOA) or only
-      contract addresses as intended?
-    - Are there access control checks in place to differentiate between EOA and contract
-      callers when required?
-    - Has the protocol been reviewed to ensure it meets the intended caller requirements?
-  - rid: S3.2.G5
-    requirement: Verify Address Checks
-    testname: Verify Address Checks
-    checklist:
-    - Does the token implement any forms of address whitelisting, blacklisting, or validation
-      checks that could introduce issues?
-    - Are there any hardcoded addresses in the contract that could pose security risks?
-  - rid: S3.2.G6
-    requirement: Verify Transfer Fees
-    testname: Verify Transfer Fees
-    checklist:
-    - Does the token impose a fee on transfers, resulting in the receiver getting less
-      than the specified amount?
-    - How are transfer fees calculated and collected?
-  - rid: S3.2.G7
-    requirement: Verify ERC777 Compatibility
-    testname: Verify ERC777 Compatibility
-    checklist:
-    - Can the token also function as an ERC777 token, which includes hooks that execute
-      code before and after transfers, potentially leading to reentrancy attacks?
-    - Are there safeguards in place to handle the hooks securely?
-  - rid: S3.2.G8
-    requirement: Verify Solmate's ERC20.safeTransferLib Usage
-    testname: Verify Solmate's ERC20.safeTransferLib Usage
-    checklist:
-    - Does the protocol utilize Solmate's ERC20.safeTransferLib, which does not check
-      for the existence of a contract and could be exploited for honeypot attacks?
-    - Are there alternative libraries or methods that could enhance security?
-  - rid: S3.2.G9
-    requirement: Verify Zero Amount Transfers
-    testname: Verify Zero Amount Transfers
-    checklist:
-    - What is the token's behavior when transferring a zero amount? Does it revert,
-      and could this cause issues in certain integrations and operations?
-    - Are there any edge cases related to zero-amount transfers?
-  - rid: S3.2.G10
-    requirement: Verify ERC2612 Implementation
-    testname: Verify ERC2612 Implementation
-    checklist:
-    - Is the token an ERC2612 implementation, and is the DOMAIN_SEPARATOR() function
-      properly implemented to avoid vulnerabilities?
-    - How is the permit() function implemented, and are there any potential issues?
-  - rid: S3.2.G11
-    requirement: Verify Permit Function Replay Protection
-    testname: Verify Permit Function Replay Protection
-    checklist:
-    - Does the permit() function have adequate replay protection, or could someone reuse
-      a permit signature multiple times to authorize multiple transfers?
-    - Is the nonces mapping updated correctly, and does the implementation properly
-      prevent replays?
-- cid: SCSVS-GOV-3
-  objective: TBD
-  requirements:
-  - rid: S3.3.G1
-    requirement: Token Donation Manipulation
-    testname: Verify Token Donation Manipulation
-    checklist:
-    - Does the contract rely on balance or balanceOf for determining token balances
-      or ownership? If so, are there safeguards against manipulation through token donations?
-    - Are token balances verified against internal accounting records rather than solely
-      using balanceOf?
-    - Does the contract implement additional validation to ensure donated tokens do
-      not alter accounting in unexpected ways?
-  - rid: S3.3.G2
-    requirement: On-Chain Slippage Manipulation
-    testname: Detect On-Chain Slippage Manipulation
-    checklist:
-    - Is slippage calculated directly on-chain?
-    - Can the slippage calculation be influenced or manipulated by attackers?
-    - Is there a mechanism to allow users to specify slippage based on off-chain calculations?
-  - rid: S3.3.G3
-    requirement: Intermediate Slippage Enforcement
-    testname: Ensure Slippage is Enforced at All Stages
-    checklist:
-    - Is the slippage parameter enforced at all stages of the swap process, including
-      the final step?
-    - Can users receive less than the specified minimum if the final step does not enforce
-      slippage?
-  - rid: S3.3.G4
-    requirement: First Deposit Initialization
-    testname: Verify Initial Deposit Behavior
-    checklist:
-    - Does the initial deposit set parameters or conditions for subsequent deposits?
-    - Have you tested to ensure that the first deposit initializes parameters correctly?
-  - rid: S3.3.G5
-    requirement: Read-Only Reentrancy
-    testname: Verify Read-Only Reentrancy
-    checklist:
-    - Are there view functions that could be reentered in a way that might return stale
-      or inconsistent values?
-    - Does the contract have measures to prevent reentrancy issues in view functions,
-      such as extending reentrancy guards?
-    - How does the protocol ensure that read-only functions do not lead to inconsistent
-      state or unintended actions?
-  - rid: S3.3.G6
-    requirement: Flashloan Deposit-Withdraw Attack
-    testname: Prevent Flashloan-Based Withdrawals
-    checklist:
-    - Is it possible to withdraw in the same transaction as the deposit?
-    - Does the protocol have protections against flashloan-based deposit-harvest-withdraw cycles?
-  - rid: S3.3.G7
-    requirement: Liquidation During Price Drops
-    testname: Ensure Liquidation Resilience in Volatile Markets
-    checklist:
-    - Does the liquidation mechanism include logic to handle extreme price drops effectively?
-    - Is there a safeguard to ensure liquidation occurs even when price volatility is high?
-    - How is the liquidation trigger threshold adjusted during rapid market downturns?
-  - rid: S3.3.G8
-    requirement: Position Liquidation Risk
-    testname: Manage Risks in Liquidation Processes
-    checklist:
-    - Is there a mechanism to automatically trigger liquidation if a position's collateral
-      falls below the required threshold?
-    - Are there specific conditions that can prevent liquidation, and how are these
-      managed?
-    - How does the system handle outstanding loans when the collateral value drops significantly?
-  - rid: S3.3.G9
-    requirement: Self-Liquidation Profit Loopholes
-    testname: Prevent Self-Liquidation Abuse
-    checklist:
-    - Is there validation to prevent users from exploiting self-liquidation for profit?
-    - How are self-liquidation scenarios tested for potential vulnerabilities?
-    - Are there limits or conditions imposed on self-liquidation to prevent abuse?
-  - rid: S3.3.G10
-    requirement: Parent Contract Visibility
-    testname: Verify Parent Contract Visibility
-    checklist:
-    - Have you reviewed the visibility of functions in parent contracts to ensure they
-      are appropriately exposed?
-    - Are there any public or external functions in parent contracts that should be
-      restricted or hidden in the derived contract?
-    - Is the visibility of inherited functions aligned with the desired access levels?
-  - rid: S3.3.G11
-    requirement: Commit Reveal Scheme
-    testname: Verify Commit Reveal Scheme
-    checklist:
-    - Does the protocol implement a commit-reveal scheme to protect against front-running?
-      Verify the presence of both commit and reveal phases.
-    - How does the protocol ensure that the commit-reveal pattern is followed to prevent
-      adversaries from gaining insight into actions before they are finalized?
-    - Are there mechanisms in place to ensure confidentiality and integrity of actions
-      until the reveal phase?
-  - rid: S3.3.G12
-    requirement: Hardcoded Slippage
-    testname: Ensure Dynamic Slippage Implementation
-    checklist:
-    - Is slippage implemented as a hardcoded value in the contract?
-    - Have you ensured that slippage can be adjusted dynamically based on market conditions?
-    - Is there functionality allowing users to specify slippage parameters based on
-      their own calculations?
-  - rid: S3.3.G13
-    requirement: Deadline Protection
-    testname: Validate Deadline Protection Mechanisms
-    checklist:
-    - Does the protocol implement deadline protection to prevent transactions from being
-      manipulated?
-    - Is there an option for users to set deadlines for their transactions?
-    - Have you validated that transactions cannot be processed outside the specified
-      deadline?
-  - rid: S3.3.G14
-    requirement: Reserve Validation
-    testname: Ensure Proper Reserve Validation
-    checklist:
-    - Is there a validation check in place for protocol reserves?
-    - Have you ensured that reserves are verified before being used or lent out?
-    - Does the protocol include mechanisms to safeguard against reserve depletion?
-  - rid: S3.3.G15
-    requirement: Slippage Protection
-    testname: Ensure Slippage Protection
-    checklist:
-    - Is there a mechanism to protect against excessive slippage in trades?
-    - Can users specify their own slippage parameters to manage risk?
-    - Are there safeguards to prevent losses from large price deviations?
-  - rid: S3.3.G16
-    requirement: Min Amount Out Calculation
-    testname: Ensure Reliable Min Amount Out Calculation
-    checklist:
-    - Does the protocol calculate minAmountOut before executing swaps?
-    - Is the source of rates for minAmountOut reliable and protected from manipulation?
-    - Have you validated the minAmountOut logic to prevent unfavorable rates and potential vulnerabilities?
+  - cid: SCSVS-GOV-2
+    objective: TBD
+    requirements:
+    - rid: S3.2.G1
+      requirement: Verify ERC20 Compliance
+      testname: Verify ERC20 Compliance
+      checklist:
+      - Are the token's transfer functions (transfer, transferFrom) fully compliant with
+        the EIP20 standard, including returning a boolean flag and reverting on failure?
+      - Are safe transfer functions (safeTransfer, safeTransferFrom) consistently used
+        throughout the contract?
+    - rid: S3.2.G2
+      requirement: Verify Approval Race Condition
+      testname: Verify Approval Race Condition
+      checklist:
+      - Is there a risk of race conditions in the approval process that could lead to
+        unexpected fund loss for the signer?
+      - Are there mechanisms in place to prevent double-spending or front-running attacks?
+    - rid: S3.2.G3
+      requirement: Verify Decimal Discrepancies
+      testname: Verify Decimal Discrepancies
+      checklist:
+      - Could differences in the number of decimals between various ERC20 tokens lead
+        to calculation or interpretation errors?
+      - Are there any conversions or calculations that might be affected by differing
+        decimal places?
+    - rid: S3.2.G4
+      requirement: Caller Checking
+      testname: Verify Caller Checking
+      checklist:
+      - Does the function restrict calls to only externally owned accounts (EOA) or only
+        contract addresses as intended?
+      - Are there access control checks in place to differentiate between EOA and contract
+        callers when required?
+      - Has the protocol been reviewed to ensure it meets the intended caller requirements?
+    - rid: S3.2.G5
+      requirement: Verify Address Checks
+      testname: Verify Address Checks
+      checklist:
+      - Does the token implement any forms of address whitelisting, blacklisting, or validation
+        checks that could introduce issues?
+      - Are there any hardcoded addresses in the contract that could pose security risks?
+    - rid: S3.2.G6
+      requirement: Verify Transfer Fees
+      testname: Verify Transfer Fees
+      checklist:
+      - Does the token impose a fee on transfers, resulting in the receiver getting less
+        than the specified amount?
+      - How are transfer fees calculated and collected?
+    - rid: S3.2.G7
+      requirement: Verify ERC777 Compatibility
+      testname: Verify ERC777 Compatibility
+      checklist:
+      - Can the token also function as an ERC777 token, which includes hooks that execute
+        code before and after transfers, potentially leading to reentrancy attacks?
+      - Are there safeguards in place to handle the hooks securely?
+    - rid: S3.2.G8
+      requirement: Verify Solmate's ERC20.safeTransferLib Usage
+      testname: Verify Solmate's ERC20.safeTransferLib Usage
+      checklist:
+      - Does the protocol utilize Solmate's ERC20.safeTransferLib, which does not check
+        for the existence of a contract and could be exploited for honeypot attacks?
+      - Are there alternative libraries or methods that could enhance security?
+    - rid: S3.2.G9
+      requirement: Verify Zero Amount Transfers
+      testname: Verify Zero Amount Transfers
+      checklist:
+      - What is the token's behavior when transferring a zero amount? Does it revert,
+        and could this cause issues in certain integrations and operations?
+      - Are there any edge cases related to zero-amount transfers?
+    - rid: S3.2.G10
+      requirement: Verify ERC2612 Implementation
+      testname: Verify ERC2612 Implementation
+      checklist:
+      - Is the token an ERC2612 implementation, and is the DOMAIN_SEPARATOR() function
+        properly implemented to avoid vulnerabilities?
+      - How is the permit() function implemented, and are there any potential issues?
+    - rid: S3.2.G11
+      requirement: Verify Permit Function Replay Protection
+      testname: Verify Permit Function Replay Protection
+      checklist:
+      - Does the permit() function have adequate replay protection, or could someone reuse
+        a permit signature multiple times to authorize multiple transfers?
+      - Is the nonces mapping updated correctly, and does the implementation properly
+        prevent replays?
+  - cid: SCSVS-GOV-3
+    objective: TBD
+    requirements:
+    - rid: S3.3.G1
+      requirement: Token Donation Manipulation
+      testname: Verify Token Donation Manipulation
+      checklist:
+      - Does the contract rely on balance or balanceOf for determining token balances
+        or ownership? If so, are there safeguards against manipulation through token donations?
+      - Are token balances verified against internal accounting records rather than solely
+        using balanceOf?
+      - Does the contract implement additional validation to ensure donated tokens do
+        not alter accounting in unexpected ways?
+    - rid: S3.3.G2
+      requirement: On-Chain Slippage Manipulation
+      testname: Detect On-Chain Slippage Manipulation
+      checklist:
+      - Is slippage calculated directly on-chain?
+      - Can the slippage calculation be influenced or manipulated by attackers?
+      - Is there a mechanism to allow users to specify slippage based on off-chain calculations?
+    - rid: S3.3.G3
+      requirement: Intermediate Slippage Enforcement
+      testname: Ensure Slippage is Enforced at All Stages
+      checklist:
+      - Is the slippage parameter enforced at all stages of the swap process, including
+        the final step?
+      - Can users receive less than the specified minimum if the final step does not enforce
+        slippage?
+    - rid: S3.3.G4
+      requirement: First Deposit Initialization
+      testname: Verify Initial Deposit Behavior
+      checklist:
+      - Does the initial deposit set parameters or conditions for subsequent deposits?
+      - Have you tested to ensure that the first deposit initializes parameters correctly?
+    - rid: S3.3.G5
+      requirement: Read-Only Reentrancy
+      testname: Verify Read-Only Reentrancy
+      checklist:
+      - Are there view functions that could be reentered in a way that might return stale
+        or inconsistent values?
+      - Does the contract have measures to prevent reentrancy issues in view functions,
+        such as extending reentrancy guards?
+      - How does the protocol ensure that read-only functions do not lead to inconsistent
+        state or unintended actions?
+    - rid: S3.3.G6
+      requirement: Flashloan Deposit-Withdraw Attack
+      testname: Prevent Flashloan-Based Withdrawals
+      checklist:
+      - Is it possible to withdraw in the same transaction as the deposit?
+      - Does the protocol have protections against flashloan-based deposit-harvest-withdraw cycles?
+    - rid: S3.3.G7
+      requirement: Liquidation During Price Drops
+      testname: Ensure Liquidation Resilience in Volatile Markets
+      checklist:
+      - Does the liquidation mechanism include logic to handle extreme price drops effectively?
+      - Is there a safeguard to ensure liquidation occurs even when price volatility is high?
+      - How is the liquidation trigger threshold adjusted during rapid market downturns?
+    - rid: S3.3.G8
+      requirement: Position Liquidation Risk
+      testname: Manage Risks in Liquidation Processes
+      checklist:
+      - Is there a mechanism to automatically trigger liquidation if a position's collateral
+        falls below the required threshold?
+      - Are there specific conditions that can prevent liquidation, and how are these
+        managed?
+      - How does the system handle outstanding loans when the collateral value drops significantly?
+    - rid: S3.3.G9
+      requirement: Self-Liquidation Profit Loopholes
+      testname: Prevent Self-Liquidation Abuse
+      checklist:
+      - Is there validation to prevent users from exploiting self-liquidation for profit?
+      - How are self-liquidation scenarios tested for potential vulnerabilities?
+      - Are there limits or conditions imposed on self-liquidation to prevent abuse?
+    - rid: S3.3.G10
+      requirement: Parent Contract Visibility
+      testname: Verify Parent Contract Visibility
+      checklist:
+      - Have you reviewed the visibility of functions in parent contracts to ensure they
+        are appropriately exposed?
+      - Are there any public or external functions in parent contracts that should be
+        restricted or hidden in the derived contract?
+      - Is the visibility of inherited functions aligned with the desired access levels?
+    - rid: S3.3.G11
+      requirement: Commit Reveal Scheme
+      testname: Verify Commit Reveal Scheme
+      checklist:
+      - Does the protocol implement a commit-reveal scheme to protect against front-running?
+        Verify the presence of both commit and reveal phases.
+      - How does the protocol ensure that the commit-reveal pattern is followed to prevent
+        adversaries from gaining insight into actions before they are finalized?
+      - Are there mechanisms in place to ensure confidentiality and integrity of actions
+        until the reveal phase?
+    - rid: S3.3.G12
+      requirement: Hardcoded Slippage
+      testname: Ensure Dynamic Slippage Implementation
+      checklist:
+      - Is slippage implemented as a hardcoded value in the contract?
+      - Have you ensured that slippage can be adjusted dynamically based on market conditions?
+      - Is there functionality allowing users to specify slippage parameters based on
+        their own calculations?
+    - rid: S3.3.G13
+      requirement: Deadline Protection
+      testname: Validate Deadline Protection Mechanisms
+      checklist:
+      - Does the protocol implement deadline protection to prevent transactions from being
+        manipulated?
+      - Is there an option for users to set deadlines for their transactions?
+      - Have you validated that transactions cannot be processed outside the specified
+        deadline?
+    - rid: S3.3.G14
+      requirement: Reserve Validation
+      testname: Ensure Proper Reserve Validation
+      checklist:
+      - Is there a validation check in place for protocol reserves?
+      - Have you ensured that reserves are verified before being used or lent out?
+      - Does the protocol include mechanisms to safeguard against reserve depletion?
+    - rid: S3.3.G15
+      requirement: Slippage Protection
+      testname: Ensure Slippage Protection
+      checklist:
+      - Is there a mechanism to protect against excessive slippage in trades?
+      - Can users specify their own slippage parameters to manage risk?
+      - Are there safeguards to prevent losses from large price deviations?
+    - rid: S3.3.G16
+      requirement: Min Amount Out Calculation
+      testname: Ensure Reliable Min Amount Out Calculation
+      checklist:
+      - Does the protocol calculate minAmountOut before executing swaps?
+      - Is the source of rates for minAmountOut reliable and protected from manipulation?
+      - Have you validated the minAmountOut logic to prevent unfavorable rates and potential vulnerabilities?
 
