@@ -436,14 +436,14 @@ groups:
       - Have you ensured that initialization is restricted correctly to avoid unauthorized
         access?        
     - rid: S2.1.G5
-    requirement: Comment Accuracy
-    testname: Verify Comment Accuracy
-    checklist:
-    - Are comments and documentation reviewed and updated regularly to match the current
-      implementation?
-    - Does the code review process include verification of comment accuracy and relevance?
-    - Are there automated tools or practices in place to flag outdated or inconsistent
-      comments?
+      requirement: Comment Accuracy
+      testname: Verify Comment Accuracy
+      checklist:
+      - Are comments and documentation reviewed and updated regularly to match the current
+        implementation?
+      - Does the code review process include verification of comment accuracy and relevance?
+      - Are there automated tools or practices in place to flag outdated or inconsistent
+        comments?
 - gid: SCSVS-GOV
   index: 3
   title: TBD
