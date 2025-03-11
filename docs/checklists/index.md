@@ -22,6 +22,6 @@ The OWASP Smart Contract Security Checklist contains links to the SCSTG test cas
 
 <br>
 
-<button class="scs-button" onclick="window.location.href='https://docs.google.com/spreadsheets/d/14l4clyXG0nwSu1KI81nWEGkhtV7vuddb4cRJWwEg3Mo/edit?usp=sharing';"> Visit the SCS Checklist</button>
+<button class="scs-button" onclick="window.location.href='https://docs.google.com/spreadsheets/d/1W3-XeqbCQp7RHRJKVfllcL9VmzrErMad-biL2mwOChM/edit?usp=sharing';"> Visit the SCS Checklist</button>
 
 <br>
