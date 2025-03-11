@@ -67,7 +67,7 @@ hide:
 
 <br>
 
-<button class="scs-button" onclick="window.location.href='https://docs.google.com/spreadsheets/d/14l4clyXG0nwSu1KI81nWEGkhtV7vuddb4cRJWwEg3Mo/edit?usp=sharing';"> Visit the Checklist</button>
+<button class="scs-button" onclick="window.location.href='https://docs.google.com/spreadsheets/d/1W3-XeqbCQp7RHRJKVfllcL9VmzrErMad-biL2mwOChM/edit?usp=sharing';"> Visit the Checklist</button>
 
 </center>
 
