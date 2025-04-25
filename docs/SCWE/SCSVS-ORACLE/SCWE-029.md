@@ -5,8 +5,8 @@ alias: lack-of-decentralized-oracle-sources
 platform: []
 profiles: [L1]
 mappings:
-  scsvs-cg: [SCSVS-BRIDGE]
-  scsvs-scg: [SCSVS-BRIDGE-1]
+  scsvs-cg: [SCSVS-ORACLE]
+  scsvs-scg: [SCSVS-ORACLE-1]
   cwe: [20]
 status: new
 ---
