@@ -16,7 +16,7 @@ status: new
 
 
 ## Description
-This issue arises when smart contracts perform arithmetic involving token values and price feeds without properly aligning decimal places across different sources (e.g., ERC-20 tokens with varying decimals and Chainlink oracles with fixed 8-decimal prices). Failing to normalize decimals before calculations can lead to severely inflated or deflated results, causing users to be overcharged, underpaid, or otherwise economically exploited.
+This issue arises when smart contracts perform arithmetic involving token values and price feeds without properly aligning decimal places across different sources (e.g. ERC-20 tokens with varying decimals and Chainlink oracles with fixed 8-decimal prices). Failing to normalize decimals before calculations can lead to severely inflated or deflated results, causing users to be overcharged, underpaid, or otherwise economically exploited.
 
 ## Impact
 Smart contracts often rely on cross-asset conversions, such as paying fees in tokens or using collateralization logic involving price feeds. Improper decimal handling in these calculations may:
