@@ -7,17 +7,15 @@ profiles: [L1]
 mappings:
   scsvs-cg: [SCSVS-BRIDGE]
   scsvs-scg: [SCSVS-BRIDGE-2]
-  cwe: [20]
+  cwe: [1284]
 status: new
 ---
 
-
-
 # Relationships
+- CWE-1284: Improper Validation of Specified Quantity in Input  
+  [CWE-1284 Link](https://cwe.mitre.org/data/definitions/1284.html)
 - CWE-20: Improper Input Validation  
   [CWE-20 Link](https://cwe.mitre.org/data/definitions/20.html)
-
----
 
 ## Description
 This weakness arises when smart contracts performing cross-chain messaging fail to validate the size of payloads before emitting or sending them. In protocols using relayer-based messaging (e.g., LayerZero, Wormhole), data is typically encoded and emitted as a payload on the source chain, then relayed and decoded on the destination chain. If the encoded payload exceeds the maximum allowed size (often 10,000 bytes or similar, depending on the bridge/messaging protocol), the message transmission or decoding can revert—often because the large payload causes out-of-gas consumption during processing or fails explicit size checks. In lock-mint architectures, this can lead to permanent loss of user funds due to inability to unlock or mint assets on the destination chain.
