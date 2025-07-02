@@ -11,7 +11,7 @@ mappings:
 status: new
 ---
 
-# Relationships
+## Relationships
 - CWE-1284: Improper Validation of Specified Quantity in Input  
   [CWE-1284 Link](https://cwe.mitre.org/data/definitions/1284.html)
 - CWE-20: Improper Input Validation  
