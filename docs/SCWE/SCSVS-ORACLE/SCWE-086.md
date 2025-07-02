@@ -6,7 +6,7 @@ platform: []
 profiles: [L1]
 mappings:
   scsvs-cg: [SCSVS-ORACLE]
-  cwe: [20]
+  cwe: [345]
 status: new
 ---
 
