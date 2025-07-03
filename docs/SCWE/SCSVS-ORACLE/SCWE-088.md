@@ -7,12 +7,13 @@ profiles: [L1]
 mappings:
   scsvs-cg: [SCSVS-ORACLE]
   scsvs-scg: [SCSVS-ORACLE-1]
-  cwe: [20]
+  cwe: [682]
 status: new
 ---
 
 ## Relationships
-- **CWE-20**:  [Improper Input Validation](https://cwe.mitre.org/data/definitions/20.html)
+- **CWE-681**:  [Incorrect Conversion between Numeric Types](https://cwe.mitre.org/data/definitions/681.html)
+- **CWE-682**:  [Incorrect Calculation](https://cwe.mitre.org/data/definitions/682.html)
 
 
 ## Description
