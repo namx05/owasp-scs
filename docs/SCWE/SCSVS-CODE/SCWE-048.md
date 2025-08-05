@@ -12,7 +12,9 @@ status: new
 ---
 
 ## Relationships
-- CWE-390: Detection of Error Condition Without Action  
+- CWE-252: Unchecked Return Value
+  [https://cwe.mitre.org/data/definitions/252.html](https://cwe.mitre.org/data/definitions/252.html)
+- CWE-390: Detection of Error Condition Without Action
   [https://cwe.mitre.org/data/definitions/390.html](https://cwe.mitre.org/data/definitions/390.html)
 
 ## Description
@@ -20,18 +22,18 @@ Unchecked call return value vulnerabilities occur when a contract fails to valid
 
 ## Remediation
 - **Check return values:** Always verify the success of low-level calls.  
-- **Use higher-level abstractions:** Prefer `transfer` or `send` over `call` for sending Ether, as they revert on failure. 
+- **Use higher-level abstractions:** Prefer method calls or, if you are confident that 2300 gas are sufficient for the recipient to handle the transfer, `transfer` over `call`, as they revert on failure. 
 
 ## Examples
 
 ### Vulnerable Contract Example
 
 ```solidity
-pragma solidity ^0.4.0;
+pragma solidity ^0.8.0;
 
 contract UncheckedCall {
     function sendEther(address _recipient) public payable {
-        _recipient.call.value(msg.value)(); // Unchecked call, no error handling
+        _recipient.call{value: msg.value}(""); // Unchecked call, no error handling
     }
 }
 ```
