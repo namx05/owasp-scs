@@ -14,7 +14,7 @@ You can follow and reach out to the OWASP SCS team in many ways.
 - Stay always up-to-date by following us on Twitter.
 - Join our Slack community
 
-If you'd like to contribute, take a look at our [Contributions page](contributing.md) or reach out to the project leaders Carlos or Sven.
+If you'd like to contribute, take a look at our [Contributions page](contributing.md) or reach out to the project leaders or project maintainers mentioned below.
 
 [:material-github:](https://github.com/OWASP/owasp-scs/discussions)
 [:material-twitter:](https://x.com/scs_owasp)
