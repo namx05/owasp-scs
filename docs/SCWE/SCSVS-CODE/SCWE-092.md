@@ -1,6 +1,6 @@
 ---
 title: Missing Disable Initializer in Constructor for Proxy Contracts
-id: SCWE-0XX
+id: SCWE-092
 alias: Missing-Disable-Initializer-in-Constructor-for-Proxy-Contracts
 platform: []
 profiles: [L1, L2]
