@@ -7,7 +7,7 @@ profiles: [L1]
 mappings:
   scsvs-cg: [SCSVS-BRIDGE]
   scsvs-scg: [SCSVS-BRIDGE-1]
-  cwe: [345, 664]
+  cwe: [345]
 status: new
 ---
 
