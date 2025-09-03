@@ -7,13 +7,15 @@ profiles: [L1]
 mappings:
   scsvs-cg: [SCSVS-BRIDGE]
   scsvs-scg: [SCSVS-BRIDGE-1]
-  cwe: [345]
+  cwe: [345, 664]
 status: new
 ---
 
 ## Relationships
 - CWE-345:  Insufficient Verification of Data Authenticity  
   [CWE-345 Link](https://cwe.mitre.org/data/definitions/345.html)
+- CWE-664: Improper Control of a Resource Through Its Lifetime      
+  [CWE-664 Link](https://cwe.mitre.org/data/definitions/664.html)
 
 ## Description  
 This weakness occurs when a cross-chain bridge allows withdrawals from Chain B to Chain A without properly burning or locking the corresponding token on the source chain (Chain B) before initiating the cross-chain transaction.
@@ -67,7 +69,7 @@ contract SourceChainNFTGateway {
         require(ownerOf[l2Token][tokenId] == msg.sender, "Not the owner");
 
         // ✅ Burn the NFT on Source Chain to prevent double-spend
-        IL2Token(l2Token).burn(tokenId);
+        IL2NFT(l2Token).burn(tokenId);
 
         // Send cross-chain message to Destination Chain (omitted for simplicity)
     }
